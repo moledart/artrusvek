@@ -1,0 +1,39 @@
+nav {
+  display: flex;
+  padding: 2rem 5%;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    span {
+      display: block;
+      font-size: 2rem;
+      line-height: 0.9;
+      font-weight: bold;
+      color: $bright-text;
+      letter-spacing: 1.4px;
+    }
+    .small_text {
+      font-size: 0.9rem;
+      font-weight: lighter;
+      color: $main-text;
+    }
+  }
+
+  .nav_links {
+    display: flex;
+
+    .nav_link {
+      padding: 1rem 2rem;
+      border-radius: 0.2rem;
+      transition: all 0.2s ease-out;
+      color: $bright-text;
+      font-size: 1rem;
+      &:hover {
+        background-color: $lighter-black;
+        color: $primary;
+      }
+    }
+  }
+}
