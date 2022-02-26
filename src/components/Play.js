@@ -1,9 +1,11 @@
 import React from "react";
+//Router
+import { Link } from "react-router-dom";
 
 const Play = ({ play }) => {
-  const { name, genre, rating, thumbnail, briefInfo } = play;
+  const { name, genre, rating, thumbnail, briefInfo, slug } = play;
   return (
-    <div className="play">
+    <Link to={`/plays/${slug}`} className="play">
       <div className="play_thumbnail">
         <img src={thumbnail} />
         <div className="play_rating">{rating}</div>
@@ -13,7 +15,7 @@ const Play = ({ play }) => {
         <span className="play_genre">{genre}</span>
         <p className="play_description">{briefInfo}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

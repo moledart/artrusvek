@@ -9,17 +9,18 @@ import { addData, fetchPlays } from "../counterSlice";
 import Section from "../components/Section";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchPlays());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchPlays());
+  // }, [dispatch]);
 
-  const plays = useSelector((state) => state.plays.plays);
+  // const plays = useSelector((state) => state.plays.plays);
 
   return (
     <main>
-      <Section title="Cпектакли" plays={plays} />
+      <Section title="Cпектакли" linkTo="/plays" />
+      <Section title="Творческая группа" linkTo="/actors" />
     </main>
   );
 };
