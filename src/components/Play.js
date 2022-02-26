@@ -1,16 +1,17 @@
 import React from "react";
 
-const Play = () => {
+const Play = ({ play }) => {
+  const { name, genre, rating, thumbnail, briefInfo } = play;
   return (
     <div className="play">
-      <div className="play__thumbnail">
-        <img src={thumbnail} width="100%" height="158" />
-        <div className="play__rating">{rating}</div>
+      <div className="play_thumbnail">
+        <img src={thumbnail} />
+        <div className="play_rating">{rating}</div>
       </div>
-      <div className="play__info">
-        <h3 className="play__name">{name}</h3>
-        <span className="play__genre">{genre}</span>
-        <p className="play__description">{info}</p>
+      <div className="play_info">
+        <h3 className="play_name">{name}</h3>
+        <span className="play_genre">{genre}</span>
+        <p className="play_description">{briefInfo}</p>
       </div>
     </div>
   );

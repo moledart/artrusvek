@@ -1,6 +1,6 @@
 import React from "react";
 
-const Plays = () => {
+const Plays = (plays) => {
   return (
     <main>
       <h1>Plays</h1>

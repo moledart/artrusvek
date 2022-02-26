@@ -1,0 +1,33 @@
+Section {
+  display: flex;
+  flex-direction: column;
+}
+
+.section_header {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.title_link {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  background-color: $grey;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  border-radius: 0.2rem;
+  transition: all 0.2s ease-out;
+  &:hover {
+    background-color: $grey;
+    color: $primary;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  justify-content: space-between;
+}

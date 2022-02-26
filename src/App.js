@@ -10,6 +10,9 @@ import News from "./pages/News";
 import Nav from "./components/Nav";
 //Router
 import { Routes, Route } from "react-router-dom";
+//Data
+import { db } from "./firebase";
+import { onValue, ref } from "firebase/database";
 
 function App() {
   return (

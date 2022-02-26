@@ -6,21 +6,22 @@
 }
 
 //Variables
-$main-black: #1f2024;
-$lighter-black: #3a3a3a;
-$main-text: #cfcfcf;
-$bright-text: #f5f5f5;
+$black: #1f2024;
+$grey: #3a3a3a;
+$grey-text: #cfcfcf;
+$white-text: #f5f5f5;
 $primary: #dc9763;
 
 body {
-  background-color: $main-black;
+  background-color: $black;
   position: relative;
 }
 
 .App {
   margin: 0 auto;
   font-family: "Rubik", sans-serif;
-  color: $main-text;
+  color: $grey-text;
+  padding: 0 5%;
 }
 
 ol,
@@ -32,23 +33,26 @@ h1 {
   font-size: 3.2rem;
   line-height: 1.2;
   font-weight: 600;
-  color: $bright-text;
+  color: $white-text;
 }
 
 h2 {
   font-size: 1.5rem;
   font-weight: 600;
+  color: $white-text;
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.2;
   font-weight: 600;
+  color: $white-text;
+  font-weight: bold;
 }
 
 a {
   text-decoration: none;
-  color: $main-text;
+  color: $grey-text;
 }
 
 main {
@@ -58,7 +62,7 @@ main {
 
 section {
   display: flex;
-  padding: 2rem 0;
+  padding: 3rem 0;
 }
 
 img {
@@ -67,3 +71,5 @@ img {
 
 @import "./nav";
 @import "./hero";
+@import "./section";
+@import "./play";

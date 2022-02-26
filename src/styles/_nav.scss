@@ -1,6 +1,6 @@
 nav {
   display: flex;
-  padding: 2rem 5%;
+  padding: 2rem 0;
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -11,13 +11,13 @@ nav {
       font-size: 2rem;
       line-height: 0.9;
       font-weight: bold;
-      color: $bright-text;
+      color: $white-text;
       letter-spacing: 1.4px;
     }
     .small_text {
       font-size: 0.9rem;
       font-weight: lighter;
-      color: $main-text;
+      color: $grey-text;
     }
   }
 
@@ -28,10 +28,10 @@ nav {
       padding: 1rem 2rem;
       border-radius: 0.2rem;
       transition: all 0.2s ease-out;
-      color: $bright-text;
+      color: $grey-text;
       font-size: 1rem;
       &:hover {
-        background-color: $lighter-black;
+        background-color: $grey;
         color: $primary;
       }
     }
