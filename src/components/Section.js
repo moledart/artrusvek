@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 //Components
 import PlayList from "./PlayList";
+import ActorList from "./ActorList";
 
 const Section = (props) => {
   return (
@@ -13,7 +14,7 @@ const Section = (props) => {
           Посмотреть все
         </Link>
       </div>
-      <PlayList />
+      {props.linkTo === "/plays" ? <PlayList /> : <ActorList />}
     </section>
   );
 };

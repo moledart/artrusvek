@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // // //Data
-import { db } from "./firebase";
+import { db } from "../firebase";
 import { get, ref } from "firebase/database";
 
 export const fetchPlays = createAsyncThunk("plays/fetchPlays", async function () {
   const snapshot = await get(ref(db, "/plays"));
-  const data = snapshot.val();
+  const response = snapshot.val();
+  const data = response.sort((a, b) => {
+    return a.sortId - b.sortId;
+  });
   return data;
 });
 
@@ -30,8 +33,6 @@ export const playsSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { addData } = playsSlice.actions;
+export const {} = playsSlice.actions;
 
-console.log(playsSlice);
 export default playsSlice.reducer;

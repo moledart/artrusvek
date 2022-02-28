@@ -1,24 +1,23 @@
 import React, { useEffect } from "react";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPlays } from "../reducers/playsSlice";
+import { fetchActors } from "../reducers/actorsSlice";
 //Components
-import Play from "./Play";
+import Actor from "./Actor";
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
-const PlayList = () => {
+const ActorList = () => {
   //Fetching data
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchPlays());
+    dispatch(fetchActors());
   }, [dispatch]);
   //Getting data back
-  const plays = useSelector((state) => state.plays.plays);
-  console.log(plays);
+  const actors = useSelector((state) => state.actors.actors);
 
   return (
     <>
@@ -34,16 +33,16 @@ const PlayList = () => {
             spaceBetween: 32,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 8,
             spaceBetween: 24,
           },
         }}
         className="mySwiper"
         modules={[Navigation]}
       >
-        {plays.map((play) => (
-          <SwiperSlide key={play.id}>
-            <Play play={play} />
+        {actors.map((actor) => (
+          <SwiperSlide key={actor.id}>
+            <Actor actor={actor} roleVisible={true} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -51,4 +50,4 @@ const PlayList = () => {
   );
 };
 
-export default PlayList;
+export default ActorList;

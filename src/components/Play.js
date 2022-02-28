@@ -12,7 +12,7 @@ const Play = ({ play }) => {
       </div>
       <div className="play_info">
         <h3 className="play_name">{name}</h3>
-        <span className="play_genre">{genre}</span>
+        <span className="play_genre">{genre.toLowerCase()}</span>
         <p className="play_description">{briefInfo}</p>
       </div>
     </Link>

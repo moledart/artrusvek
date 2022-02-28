@@ -1,0 +1,36 @@
+.team {
+  h2 {
+    margin-bottom: 2rem;
+  }
+  h3 {
+    color: $primary;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.actor_group {
+  display: inline-flex;
+  flex-direction: column;
+
+  .actors_expand {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .actor {
+    width: 139px;
+  }
+}
