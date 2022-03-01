@@ -2,26 +2,36 @@
   h2 {
     margin-bottom: 2rem;
   }
-  h3 {
-    color: $primary;
-    font-weight: 400;
-    font-size: 1rem;
-  }
-  h4 {
-    font-size: 1rem;
-  }
 }
 
 .wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  row-gap: 3rem;
+  column-gap: 6rem;
 }
 
 .actor_group {
   display: inline-flex;
   flex-direction: column;
+
+  .group_name {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .line {
+      height: 0.5px;
+      width: 100%;
+      background-color: $primary;
+    }
+  }
+
+  span {
+    color: $primary;
+    font-size: 1.2rem;
+  }
 
   .actors_expand {
     display: flex;
@@ -31,6 +41,7 @@
   }
 
   .actor {
-    width: 139px;
+    width: 100%;
+    max-width: 193.3px;
   }
 }

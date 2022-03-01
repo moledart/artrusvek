@@ -4,9 +4,10 @@
   overflow: hidden;
   img {
     object-fit: cover;
-    height: 170px;
+    // height: 170px;
     object-position: center center;
     transition: transform 0.3s ease-in-out;
+    aspect-ratio: 5/7;
     &:hover {
       transform: scale3d(1.05, 1.05, 1);
     }
@@ -16,6 +17,10 @@
 .actor_name {
   font-size: 1rem;
   font-weight: 400;
-  margin: 0.5rem 0 0.25rem;
+  margin: 0.5rem 0 0;
   word-spacing: 99999px;
+}
+
+.actor_role {
+  font-size: 0.9rem;
 }

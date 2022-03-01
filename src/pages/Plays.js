@@ -5,16 +5,7 @@ import { fetchPlays } from "../reducers/playsSlice";
 //Components
 import Play from "../components/Play";
 
-const Plays = () => {
-  //Fetching data
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchPlays());
-  }, [dispatch]);
-  //Getting data back
-  const plays = useSelector((state) => state.plays.plays);
-  console.log(plays);
-
+const Plays = ({ plays }) => {
   return (
     <main>
       <section className="plays">

@@ -1,14 +1,14 @@
 import React from "react";
 //Router
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
     <nav>
-      <div className="logo">
+      <Link to="/" className="logo">
         <span>ArtRusVek</span>
         <div className="small_text">продюссерская компания</div>
-      </div>
+      </Link>
       <div className="nav_links">
         <NavLink to="/" className="nav_link">
           Главная

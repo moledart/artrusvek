@@ -20,7 +20,7 @@
       object-fit: cover;
       object-position: center top;
       width: 100%;
-      aspect-ratio: 2/1;
+      aspect-ratio: 16/9;
       transition: transform 0.3s ease-in-out;
       &:hover {
         transform: scale3d(1.05, 1.05, 1);

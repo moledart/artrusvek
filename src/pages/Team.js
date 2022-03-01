@@ -5,14 +5,7 @@ import { fetchActors } from "../reducers/actorsSlice";
 //Components
 import Actor from "../components/Actor";
 
-const Actors = () => {
-  //Fetching data
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchActors());
-  }, [dispatch]);
-  //Getting data back
-  const actors = useSelector((state) => state.actors.actors);
+const Actors = ({ actors }) => {
   const producers = actors.filter((actor) => actor.role === "продюсер");
   const directors = actors.filter((actor) => actor.role === "режиссер");
   const crew = actors.filter((actor) => actor.role === "актер");
@@ -26,42 +19,61 @@ const Actors = () => {
         <h2>Творческая группа</h2>
         <div className="wrapper">
           <div className="actor_group">
-            <h3>Продюсеры</h3>
+            <div className="group_name">
+              <span>Продюсеры</span>
+              <div className="line"></div>
+            </div>
             <div className="actors_expand">
               {producers.length &&
                 producers.map((actor) => <Actor actor={actor} key={actor.id} />)}
             </div>
           </div>
           <div className="actor_group">
-            <h3>Режиссеры</h3>
+            <div className="group_name">
+              <span>Режиссеры</span>
+              <div className="line"></div>
+            </div>
             <div className="actors_expand">
               {directors.length &&
                 directors.map((actor) => <Actor actor={actor} key={actor.id} />)}
             </div>
           </div>
           <div className="actor_group">
-            <h3>Композиторы</h3>
-            <div className="actors_expand">
-              {composers.length &&
-                composers.map((actor) => <Actor actor={actor} key={actor.id} />)}
+            <div className="group_name">
+              <span>Авторы</span>
+              <div className="line"></div>
             </div>
-          </div>
-          <div className="actor_group">
-            <h3>Аранжировщики</h3>
-            <div className="actors_expand">
-              {arrangers.length &&
-                arrangers.map((actor) => <Actor actor={actor} key={actor.id} />)}
-            </div>
-          </div>
-          <div className="actor_group">
-            <h3>Авторы</h3>
             <div className="actors_expand">
               {authors.length &&
                 authors.map((actor) => <Actor actor={actor} key={actor.id} />)}
             </div>
           </div>
           <div className="actor_group">
-            <h3>Актеры</h3>
+            <div className="group_name">
+              <span>Композиторы</span>
+              <div className="line"></div>
+            </div>
+            <div className="actors_expand">
+              {composers.length &&
+                composers.map((actor) => <Actor actor={actor} key={actor.id} />)}
+            </div>
+          </div>
+          <div className="actor_group">
+            <div className="group_name">
+              <span>Аранжировщики</span>
+              <div className="line"></div>
+            </div>
+            <div className="actors_expand">
+              {arrangers.length &&
+                arrangers.map((actor) => <Actor actor={actor} key={actor.id} />)}
+            </div>
+          </div>
+
+          <div className="actor_group">
+            <div className="group_name">
+              <span>Актеры</span>
+              <div className="line"></div>
+            </div>
             <div className="actors_expand">
               {crew.length && crew.map((actor) => <Actor actor={actor} key={actor.id} />)}
             </div>

@@ -1,0 +1,50 @@
+.actor_detail {
+  max-width: 960px;
+  margin: 3rem auto 0;
+}
+.actor_bio {
+  display: flex;
+  column-gap: 1.5rem;
+  .photo {
+    max-width: 50%;
+    img {
+      object-fit: cover;
+      aspect-ratio: 5/7;
+      width: 100%;
+    }
+  }
+  .info {
+    width: 100%;
+  }
+
+  p {
+    margin-top: 0.25rem;
+    color: $grey-text;
+    line-height: 1.4;
+    text-align: justify;
+  }
+
+  .param {
+    display: block;
+    margin-top: 1.5rem;
+    color: $white-text;
+  }
+  a {
+    color: $white-text;
+    text-decoration: underline;
+  }
+
+  .social_links {
+    margin-top: 0.5rem;
+  }
+
+  .social_icon {
+    background-color: $grey;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: $primary;
+      color: $primary;
+    }
+  }
+}
