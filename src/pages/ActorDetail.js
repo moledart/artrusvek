@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 //Router
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 //Components
 import SocialLinks from "../components/SocialLinks";
+import Play from "../components/Play";
 
-const ActorDetail = ({ actors }) => {
+const ActorDetail = ({ actors, plays }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   //Get location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
-  console.log(pathId);
   const actor = actors.find((actor) => actor.slug === pathId);
-  console.log(actor);
+  const involvedPlays = plays.filter((play) => play.slug === actor.playedIn);
+  console.log(involvedPlays);
+
   return (
     <main>
       {actors.length && (
@@ -26,12 +32,25 @@ const ActorDetail = ({ actors }) => {
               <p className="param_value">{actor.birthday}</p>
               <span className="param">Образование</span>
               <p className="param_value">{actor.education}</p>
-              <span className="param">Социальные сети</span>
               <SocialLinks actor={actor} />
-              <span className="param">Описание</span>
-              <p dangerouslySetInnerHTML={{ __html: actor.description }}></p>
+              {involvedPlays.length ? (
+                <>
+                  <span className="param">Спектакли</span>
+                  <div className="plays_involved">
+                    {involvedPlays.map((play) => (
+                      <Link to={`/plays/${play.slug}`} className="play" key={play.id}>
+                        {play.name}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
+          <span className="param">Описание</span>
+          <div dangerouslySetInnerHTML={{ __html: actor.description }}></div>
         </div>
       )}
     </main>

@@ -1,27 +1,16 @@
 .actor_detail {
   max-width: 960px;
   margin: 3rem auto 0;
-}
-.actor_bio {
-  display: flex;
-  column-gap: 1.5rem;
-  .photo {
-    max-width: 50%;
-    img {
-      object-fit: cover;
-      aspect-ratio: 5/7;
-      width: 100%;
-    }
-  }
-  .info {
-    width: 100%;
-  }
 
   p {
     margin-top: 0.25rem;
     color: $grey-text;
     line-height: 1.4;
-    text-align: justify;
+  }
+
+  a {
+    color: $white-text;
+    text-decoration: underline;
   }
 
   .param {
@@ -29,13 +18,47 @@
     margin-top: 1.5rem;
     color: $white-text;
   }
-  a {
-    color: $white-text;
-    text-decoration: underline;
+
+  .plays_involved {
+    display: flex;
+    margin-top: 0.5rem;
+
+    .play {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      background-color: $grey;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      border-radius: 0.2rem;
+      transition: all 0.2s ease-out;
+      text-decoration: none;
+      &:hover {
+        background-color: $grey;
+        color: $primary;
+      }
+    }
+  }
+}
+.actor_bio {
+  display: flex;
+  column-gap: 2rem;
+  .photo {
+    width: 50%;
+    img {
+      object-fit: cover;
+      aspect-ratio: 5/7;
+      width: 100%;
+    }
+  }
+  .info {
+    width: 50%;
   }
 
   .social_links {
     margin-top: 0.5rem;
+    display: flex;
+    column-gap: 0.5rem;
   }
 
   .social_icon {

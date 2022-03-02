@@ -40,7 +40,10 @@ const App = () => {
         <Route path="/" element={<Home plays={sortedPlays} actors={sortedActors} />} />
         <Route path="/plays" element={<Plays plays={sortedPlays} />} />
         <Route path="/team" element={<Team actors={sortedActors} />} />
-        <Route path="/team/:slug" element={<ActorDetail actors={sortedActors} />} />
+        <Route
+          path="/team/:slug"
+          element={<ActorDetail actors={sortedActors} plays={sortedPlays} />}
+        />
         <Route path="/News" element={<News />} />
         <Route
           path="*"

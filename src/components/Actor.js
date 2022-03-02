@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Actor = ({ actor, roleVisible }) => {
   const { photo, name, role, slug } = actor;
   return (
-    <Link to={`./${slug}`} className="actor">
+    <Link to={`/team/${slug}`} className="actor">
       <div className="actor_photo">
         <img src={photo} alt="" width="100%" />
       </div>
