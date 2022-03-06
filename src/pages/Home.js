@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 //Components
 import Actor from "../components/Actor";
 import Play from "../components/Play";
 //Redux
-import { useSelector, useDispatch } from "react-redux";
-import { fetchData } from "../reducers/dataSlice";
+import { useSelector } from "react-redux";
 //Router
 import { Link } from "react-router-dom";
 // Swiper
@@ -12,25 +11,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+//Framer
+import { motion } from "framer-motion";
+import { PageAnimation } from "../components/PageAnimation";
 
-const Home = ({ plays, actors }) => {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchData());
-  // }, [dispatch]);
-  // //Getting data back
-  // const { data, status } = useSelector((state) => state.data);
-  // let sortedActors = [];
-  // if (status === "resolved") {
-  //   sortedActors = [...data.actors].sort((a, b) => {
-  //     return a.sortId - b.sortId;
-  //   });
-  // }
-
-  // console.log(sortedActors);
+const Home = () => {
+  //Getting data back
+  const { plays = [], actors = [], status } = useSelector((state) => state.data);
 
   return (
-    <main>
+    <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
       <section>
         <div className="section_header">
           <h2>Спектакли</h2>
@@ -101,7 +91,7 @@ const Home = ({ plays, actors }) => {
           </Swiper>
         </>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

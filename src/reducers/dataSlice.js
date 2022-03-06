@@ -12,7 +12,8 @@ export const fetchData = createAsyncThunk("data/fetchData", async function () {
 export const dataSlice = createSlice({
   name: "data",
   initialState: {
-    data: {},
+    actors: [],
+    plays: [],
     status: null,
     error: null,
   },
@@ -24,7 +25,8 @@ export const dataSlice = createSlice({
     },
     [fetchData.fulfilled]: (state, action) => {
       state.status = "resolved";
-      state.data = action.payload;
+      state.actors = action.payload.actors.sort((a, b) => a.sortId - b.sortId);
+      state.plays = action.payload.plays.sort((a, b) => a.sortId - b.sortId);
     },
     [fetchData.rejected]: (state, action) => {},
   },

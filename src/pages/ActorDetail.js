@@ -1,59 +1,75 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 //Router
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 //Components
 import SocialLinks from "../components/SocialLinks";
-import Play from "../components/Play";
+//Framer
+import { motion, usePresence } from "framer-motion";
+import { PageAnimation } from "../components/PageAnimation";
+//Redux
+import { useSelector } from "react-redux";
 
-const ActorDetail = ({ actors, plays }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+const ActorDetail = () => {
+  //Getting data back
+  const { plays = [], actors = [], status } = useSelector((state) => state.data);
   //Get location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
-  const actor = actors.find((actor) => actor.slug === pathId);
-  const involvedPlays = plays.filter((play) => play.slug === actor.playedIn);
-  console.log(involvedPlays);
+
+  const [actor, setActor] = useState({});
+  const [involvedPlays, setInvolvedPlays] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (status === "resolved") {
+      setActor(actors.find((actor) => actor.slug === pathId));
+    }
+  }, [actors]);
+
+  useEffect(() => {
+    setInvolvedPlays(plays.filter((play) => play.slug === actor.playedIn));
+  }, [actor]);
 
   return (
-    <main>
-      {actors.length && (
-        <div className="actor_detail">
-          <div className="actor_bio">
-            <div className="photo">
-              <img src={actor.photo} alt="" />
+    <>
+      {Object.entries(actor).length > 0 && status === "resolved" && (
+        <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
+          <div className="actor_detail">
+            <div className="actor_bio">
+              <div className="photo">
+                <img src={actor.photo} alt="" />
+              </div>
+              <div className="info">
+                <h2>{actor.name}</h2>
+                <span>{actor.role}</span>
+                <span className="param">Дата рождения</span>
+                <p className="param_value">{actor.birthday}</p>
+                <span className="param">Образование</span>
+                <p className="param_value">{actor.education}</p>
+                <SocialLinks actor={actor} />
+                {involvedPlays.length ? (
+                  <>
+                    <span className="param">Спектакли</span>
+                    <div className="plays_involved">
+                      {involvedPlays.map((play) => (
+                        <Link to={`/plays/${play.slug}`} className="play" key={play.id}>
+                          {play.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
-            <div className="info">
-              <h2>{actor.name}</h2>
-              <span>{actor.role}</span>
-              <span className="param">Дата рождения</span>
-              <p className="param_value">{actor.birthday}</p>
-              <span className="param">Образование</span>
-              <p className="param_value">{actor.education}</p>
-              <SocialLinks actor={actor} />
-              {involvedPlays.length ? (
-                <>
-                  <span className="param">Спектакли</span>
-                  <div className="plays_involved">
-                    {involvedPlays.map((play) => (
-                      <Link to={`/plays/${play.slug}`} className="play" key={play.id}>
-                        {play.name}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                ""
-              )}
-            </div>
+            <span className="param">Описание</span>
+            <div dangerouslySetInnerHTML={{ __html: actor.description }}></div>
           </div>
-          <span className="param">Описание</span>
-          <div dangerouslySetInnerHTML={{ __html: actor.description }}></div>
-        </div>
+        </motion.main>
       )}
-    </main>
+    </>
   );
 };
 

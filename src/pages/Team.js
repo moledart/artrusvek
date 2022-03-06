@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
-import { fetchActors } from "../reducers/actorsSlice";
 //Components
 import Actor from "../components/Actor";
+//Framer
+import { motion } from "framer-motion";
+import { PageAnimation } from "../components/PageAnimation";
 
-const Actors = ({ actors }) => {
+const Actors = () => {
+  const { actors = [], status } = useSelector((state) => state.data);
   const producers = actors.filter((actor) => actor.role === "продюсер");
   const directors = actors.filter((actor) => actor.role === "режиссер");
   const crew = actors.filter((actor) => actor.role === "актер");
@@ -14,7 +17,7 @@ const Actors = ({ actors }) => {
   const arrangers = actors.filter((actor) => actor.role === "аранжировщик");
 
   return (
-    <main>
+    <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
       <section className="team">
         <h2>Творческая группа</h2>
         <div className="wrapper">
@@ -80,7 +83,7 @@ const Actors = ({ actors }) => {
           </div>
         </div>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

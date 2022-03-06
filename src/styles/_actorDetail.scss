@@ -44,7 +44,7 @@
   display: flex;
   column-gap: 2rem;
   .photo {
-    width: 50%;
+    width: 40%;
     img {
       object-fit: cover;
       aspect-ratio: 5/7;
@@ -52,7 +52,7 @@
     }
   }
   .info {
-    width: 50%;
+    width: 60%;
   }
 
   .social_links {
