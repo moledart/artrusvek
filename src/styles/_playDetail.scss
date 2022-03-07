@@ -1,0 +1,55 @@
+.play_detail {
+  max-width: 960px;
+  margin: 3rem auto 0;
+
+  .play_thumbnail img {
+    width: 100%;
+
+    object-fit: cover;
+    object-position: center top;
+    aspect-ratio: 2/1;
+    margin-top: 1rem;
+  }
+
+  .detail_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    .rating_wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .rating {
+      height: 100%;
+      background-color: $primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border-radius: 0.2rem;
+      color: $white-text;
+      font-weight: bold;
+      width: 70px;
+    }
+  }
+
+  .play_params {
+    display: flex;
+    gap: 4rem;
+  }
+
+  section {
+    padding: 1.5rem 0;
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 24px;
+  }
+}

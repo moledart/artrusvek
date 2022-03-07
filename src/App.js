@@ -7,12 +7,14 @@ import Home from "./pages/Home";
 import Plays from "./pages/Plays";
 import Team from "./pages/Team";
 import ActorDetail from "./pages/ActorDetail";
+import PlayDetail from "./pages/PlayDetail";
 import News from "./pages/News";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 //Router
 import { Routes, Route, useLocation } from "react-router-dom";
 //Redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchData } from "./reducers/dataSlice";
 //Framer
 import { AnimatePresence } from "framer-motion";
@@ -22,18 +24,6 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
-  // //Getting data back
-  // const { data, status } = useSelector((state) => state.data);
-  // let sortedActors = [];
-  // let sortedPlays = [];
-  // if (status === "resolved") {
-  //   sortedActors = [...data.actors].sort((a, b) => {
-  //     return a.sortId - b.sortId;
-  //   });
-  //   sortedPlays = [...data.plays].sort((a, b) => {
-  //     return a.sortId - b.sortId;
-  //   });
-  // }
 
   const location = useLocation();
 
@@ -44,6 +34,7 @@ const App = () => {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/plays" element={<Plays />} />
+          <Route path="/plays/:slug" element={<PlayDetail />} />
           <Route path="/team" element={<Team />} />
           <Route path="/team/:slug" element={<ActorDetail />} />
           <Route path="/News" element={<News />} />
@@ -57,6 +48,7 @@ const App = () => {
           />
         </Routes>
       </AnimatePresence>
+      <Footer />
     </div>
   );
 };

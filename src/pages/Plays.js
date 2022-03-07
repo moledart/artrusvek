@@ -8,7 +8,9 @@ import { motion } from "framer-motion";
 import { PageAnimation } from "../components/PageAnimation";
 
 const Plays = () => {
+  window.scrollTo(0, 0);
   const { plays = [], status } = useSelector((state) => state.data);
+
   return (
     <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
       <section className="plays">

@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 import { PageAnimation } from "../components/PageAnimation";
 
 const Home = () => {
+  window.scrollTo(0, 0);
   //Getting data back
   const { plays = [], actors = [], status } = useSelector((state) => state.data);
 

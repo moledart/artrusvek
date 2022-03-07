@@ -22,7 +22,7 @@ const Nav = () => {
         <NavLink to="/news" className="nav_link">
           Новости
         </NavLink>
-        <NavLink to="/#contacts" className="nav_link">
+        <NavLink to="/#footer" className="nav_link">
           Контакты
         </NavLink>
       </div>

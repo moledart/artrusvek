@@ -21,7 +21,6 @@ body {
   margin: 0 auto;
   font-family: "Rubik", sans-serif;
   color: $grey-text;
-  padding: 0 5%;
 }
 
 ol,
@@ -30,7 +29,7 @@ ul {
 }
 
 h1 {
-  font-size: 3.2rem;
+  font-size: 2.5rem;
   line-height: 1.2;
   font-weight: 600;
   color: $white-text;
@@ -62,6 +61,7 @@ a {
 main {
   max-width: 1280px;
   margin: 0 auto;
+  min-height: 100%;
 }
 
 section {
@@ -69,8 +69,20 @@ section {
   padding: 3rem 0;
 }
 
+p {
+  margin-top: 0.25rem;
+  color: $grey-text;
+  line-height: 1.4;
+}
+
 img {
   display: block;
+}
+
+.param {
+  display: block;
+  margin-top: 1.5rem;
+  color: $white-text;
 }
 
 @import "./nav";
@@ -80,3 +92,6 @@ img {
 @import "./playsPage";
 @import "./actorsPage";
 @import "./actorDetail";
+@import "./playDetail";
+@import "./contacts";
+@import "./footer";

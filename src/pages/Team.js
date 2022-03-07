@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { PageAnimation } from "../components/PageAnimation";
 
 const Actors = () => {
+  window.scrollTo(0, 0);
   const { actors = [], status } = useSelector((state) => state.data);
   const producers = actors.filter((actor) => actor.role === "продюсер");
   const directors = actors.filter((actor) => actor.role === "режиссер");
