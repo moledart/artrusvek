@@ -47,8 +47,8 @@ const App = () => {
             }
           />
         </Routes>
+        <Footer />
       </AnimatePresence>
-      <Footer />
     </div>
   );
 };

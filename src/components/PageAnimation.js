@@ -6,6 +6,7 @@ export const PageAnimation = {
     opacity: 1,
     transition: {
       duration: 1,
+      delayChildren: 1,
     },
   },
   exit: {

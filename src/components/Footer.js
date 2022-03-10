@@ -4,10 +4,17 @@ import { Link, NavLink } from "react-router-dom";
 //Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt, faPhone } from "@fortawesome/free-solid-svg-icons";
+//Framer
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer id="footer">
+    <motion.footer
+      id="footer"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
+    >
       <div className="columns">
         <div className="footer_column">
           <Link to="/" className="logo">
@@ -51,7 +58,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

@@ -33,8 +33,8 @@ const ActorDetail = () => {
 
   return (
     <>
-      {Object.entries(actor).length > 0 && status === "resolved" && (
-        <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
+      <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
+        {Object.entries(actor).length > 0 && status === "resolved" && (
           <div className="actor_detail">
             <div className="actor_bio">
               <div className="photo">
@@ -64,11 +64,15 @@ const ActorDetail = () => {
                 )}
               </div>
             </div>
-            <span className="param">Описание</span>
-            <div dangerouslySetInnerHTML={{ __html: actor.description }}></div>
+            {actor.description && (
+              <>
+                <span className="param">Описание</span>
+                <div dangerouslySetInnerHTML={{ __html: actor.description }}></div>
+              </>
+            )}
           </div>
-        </motion.main>
-      )}
+        )}
+      </motion.main>
     </>
   );
 };
