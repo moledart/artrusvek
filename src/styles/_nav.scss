@@ -19,6 +19,15 @@ nav {
         color: $primary;
       }
     }
+
+    .nav_link-active {
+      padding: 1rem 2rem;
+      border-radius: 0.2rem;
+      transition: all 0.2s ease-out;
+      color: $primary;
+      background-color: #161616;
+      font-size: 1rem;
+    }
   }
 }
 

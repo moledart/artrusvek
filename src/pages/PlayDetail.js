@@ -17,7 +17,7 @@ import { Navigation } from "swiper";
 
 const PlayDetail = () => {
   //Getting data back
-  const { plays = [], actors = [], status } = useSelector((state) => state.data);
+  const { plays, actors, status } = useSelector((state) => state.data);
   //Get location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];

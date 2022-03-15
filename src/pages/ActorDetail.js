@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 const ActorDetail = () => {
   //Getting data back
-  const { plays = [], actors = [], status } = useSelector((state) => state.data);
+  const { plays, actors, status } = useSelector((state) => state.data);
   //Get location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
@@ -21,10 +21,10 @@ const ActorDetail = () => {
   const [involvedPlays, setInvolvedPlays] = useState([]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     if (status === "resolved") {
       setActor(actors.find((actor) => actor.slug === pathId));
     }
+    window.scrollTo(0, 0);
   }, [actors]);
 
   useEffect(() => {

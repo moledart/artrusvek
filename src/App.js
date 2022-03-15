@@ -8,6 +8,7 @@ import Plays from "./pages/Plays";
 import Team from "./pages/Team";
 import ActorDetail from "./pages/ActorDetail";
 import PlayDetail from "./pages/PlayDetail";
+import Admin from "./pages/Admin";
 import News from "./pages/News";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -37,7 +38,8 @@ const App = () => {
           <Route path="/plays/:slug" element={<PlayDetail />} />
           <Route path="/team" element={<Team />} />
           <Route path="/team/:slug" element={<ActorDetail />} />
-          <Route path="/News" element={<News />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/admin" element={<Admin />} />
           <Route
             path="*"
             element={
@@ -47,8 +49,8 @@ const App = () => {
             }
           />
         </Routes>
-        <Footer />
       </AnimatePresence>
+      <Footer />
     </div>
   );
 };

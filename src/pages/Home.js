@@ -18,7 +18,7 @@ import { PageAnimation } from "../components/PageAnimation";
 const Home = () => {
   window.scrollTo(0, 0);
   //Getting data back
-  const { plays = [], actors = [], status } = useSelector((state) => state.data);
+  const { plays, actors, status } = useSelector((state) => state.data);
 
   return (
     <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">

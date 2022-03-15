@@ -46,14 +46,14 @@ const Footer = () => {
               <p>По вопросам сотрудничества нас можно найти по следующим координатам</p>
             </div>
             <div className="contacts">
-              <div className="contact">
-                <FontAwesomeIcon icon={faAt} size="2x" className="contact_icon" />
-                <a href="tel:+79263027135">+7(926) 302-71-35</a>
-              </div>
-              <div className="contact">
-                <FontAwesomeIcon icon={faPhone} size="2x" className="contact_icon" />
-                <a href="mailto:lazarevarusvek@mail.ru">lazarevarusvek@mail.ru</a>
-              </div>
+              <a href="tel:+79263027135" className="contact">
+                <FontAwesomeIcon icon={faAt} size="xl" className="contact_icon" />
+                <span>+7 (926) 302-71-35</span>
+              </a>
+              <a href="mailto:lazarevarusvek@mail.ru" className="contact">
+                <FontAwesomeIcon icon={faPhone} size="xl" className="contact_icon" />
+                <span>lazarevarusvek@mail.ru</span>
+              </a>
             </div>
           </div>
         </div>

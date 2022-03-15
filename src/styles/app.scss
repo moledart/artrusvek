@@ -11,6 +11,7 @@ $grey: #3a3a3a;
 $grey-text: #a8a8a8;
 $white-text: #f1f1f1;
 $primary: #dc9763;
+$primary-dark: #aa6b3c;
 
 body {
   background-color: $black;
@@ -63,6 +64,7 @@ a {
 }
 
 main {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto 6rem;
 }
@@ -88,6 +90,22 @@ img {
   color: $white-text;
 }
 
+.button_main {
+  background-color: $primary;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  color: $black;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    background-color: $primary-dark;
+    color: $white-text;
+  }
+}
+
 @import "./nav";
 @import "./section";
 @import "./play";
@@ -98,3 +116,5 @@ img {
 @import "./playDetail";
 @import "./contacts";
 @import "./footer";
+@import "./login";
+@import "./adminPage";
