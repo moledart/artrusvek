@@ -60,6 +60,9 @@
     color: $white-text;
     font-size: 0.9rem;
     cursor: pointer;
+    &:hover {
+      color: $primary;
+    }
   }
 
   tbody {
@@ -71,7 +74,6 @@
     }
     tr {
       cursor: pointer;
-      transition: all 0.75 ease-out;
 
       &:hover {
         background-color: $grey;

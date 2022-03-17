@@ -39,6 +39,13 @@ const Nav = () => {
         >
           Новости
         </NavLink>
+        <NavLink
+          to="/admin"
+          className="nav_link"
+          className={({ isActive }) => (isActive ? "nav_link-active" : "nav_link")}
+        >
+          Войти
+        </NavLink>
         <HashLink to={`${location.pathname}#footer`} className="nav_link">
           Контакты
         </HashLink>
