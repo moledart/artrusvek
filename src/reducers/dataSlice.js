@@ -4,8 +4,10 @@ import { db } from "../firebase-config";
 import { get, ref } from "firebase/database";
 
 export const fetchData = createAsyncThunk("data/fetchData", async function () {
-  const snapshot = await get(ref(db), "/");
-  const response = snapshot.val();
+  // const snapshot = await get(ref(db), "/");
+  // const response = snapshot.val();
+  const data = await fetch(`${process.env.PUBLIC_URL}/data/data.json`);
+  const response = data.json();
   return response;
 });
 

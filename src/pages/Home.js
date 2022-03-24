@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import { Navigation, FreeMode } from "swiper";
 //Framer
 import { motion } from "framer-motion";
 import { PageAnimation } from "../components/PageAnimation";
@@ -33,6 +33,10 @@ const Home = () => {
           <Swiper
             navigation={true}
             breakpoints={{
+              300: {
+                slidesPerView: 1.1,
+                spaceBetween: 20,
+              },
               640: {
                 slidesPerView: 2,
                 spaceBetween: 20,
@@ -47,7 +51,8 @@ const Home = () => {
               },
             }}
             className="mySwiper"
-            modules={[Navigation]}
+            freeMode={true}
+            modules={[Navigation, FreeMode]}
           >
             {plays.map((play) => (
               <SwiperSlide key={play.id}>
@@ -68,6 +73,10 @@ const Home = () => {
           <Swiper
             navigation={true}
             breakpoints={{
+              300: {
+                slidesPerView: 2.2,
+                spaceBetween: 20,
+              },
               640: {
                 slidesPerView: 2,
                 spaceBetween: 20,
@@ -82,7 +91,8 @@ const Home = () => {
               },
             }}
             className="mySwiper"
-            modules={[Navigation]}
+            freeMode={true}
+            modules={[Navigation, FreeMode]}
           >
             {actors.map((actor) => (
               <SwiperSlide key={actor.id}>

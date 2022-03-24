@@ -58,7 +58,11 @@ const PlayDetail = () => {
               </div>
             </div>
             <div className="play_thumbnail">
-              <img src={play.thumbnail} alt="" />
+              <img
+                src={process.env.PUBLIC_URL + play.thumbnail}
+                alt={play.name}
+                height="480px"
+              />
             </div>
             <div className="play_params">
               <div className="play_param">

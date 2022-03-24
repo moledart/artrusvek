@@ -26,6 +26,7 @@ body {
   flex-direction: column;
   position: relative;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 ol,
@@ -44,6 +45,7 @@ h2 {
   font-size: 2rem;
   font-weight: 600;
   color: $white-text;
+  line-height: 2rem;
 }
 
 h3 {
@@ -66,12 +68,16 @@ a {
 main {
   width: 100%;
   max-width: 1280px;
-  margin: 0 auto 6rem;
+  padding: 94px 5% 0;
+  overflow: visible;
+  @media screen and (min-width: 992px) {
+    margin: 0 auto 6rem;
+  }
 }
 
 section {
   display: flex;
-  padding: 3rem 0;
+  padding: 2.5rem 0;
 }
 
 p {

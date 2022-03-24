@@ -92,7 +92,7 @@
     }
   }
   .visible {
-    display: flex;
+    display: table-row;
     width: 100%;
   }
   .hidden {
@@ -101,5 +101,22 @@
 
   .cms_data-wrapper {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    background-color: $grey;
+    cursor: default;
+    justify-content: space-between;
+    row-gap: 1rem;
+
+    .cms_data {
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+      gap: 0.5rem;
+      input {
+        padding: 0.5rem 1rem;
+      }
+    }
   }
 }

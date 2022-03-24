@@ -13,3 +13,13 @@ export const PageAnimation = {
     opacity: 0,
   },
 };
+
+export const NavAnimation = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delay: 1,
+    },
+  },
+};

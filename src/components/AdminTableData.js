@@ -78,37 +78,91 @@ const AdminTableData = ({ selectedData, setSelectedData }) => {
                     <td>{play.sortId}</td>
                   </tr>
                   <tr className={play.id === currentPlay.id ? "visible" : "hidden"}>
-                    {/* <div className="cms_data-wrapper">
-                          <div className="cms_data">
-                            <label htmlFor="name">Название</label>
-                            <input type="text" value={play.name} name="name" id="name" />
-                          </div>
-                          <div className="cms_data">
-                            <label htmlFor="genre">Жанр</label>
-                            <input type="text" value={play.genre} name="genre" id="genre" />
-                          </div>
-                          <div className="cms_data">
-                            <label htmlFor="briefInfo">Короткая информация</label>
-                            <textarea value={play.briefInfo} name="name" id="name" />
-                          </div>
-                          <div className="cms_data">
-                            <label htmlFor="description">Полное описание</label>
-                            <textarea
-                              value={play.description}
-                              name="description"
-                              id="description"
-                            />
-                          </div>
-                          <div className="cms_data">
-                            <label htmlFor="length">Длительность</label>
-                            <input
-                              type="text"
-                              value={play.length}
-                              name="length"
-                              id="length"
-                            />
-                          </div>
-                        </div> */}
+                    <td colSpan={3}>
+                      <div className="cms_data-wrapper">
+                        <div className="cms_data">
+                          <label htmlFor="name">Название</label>
+                          <input
+                            type="text"
+                            value={currentPlay.name}
+                            name="name"
+                            id="name"
+                          />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="genre">Жанр</label>
+                          <input type="text" value={play.genre} name="genre" id="genre" />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="briefInfo">Короткая информация</label>
+                          <textarea
+                            value={play.briefInfo}
+                            name="briefInfo"
+                            id="briefInfo"
+                            rows="10"
+                          />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="description">Полное описание</label>
+                          <textarea
+                            value={play.description}
+                            name="description"
+                            id="description"
+                            rows="10"
+                          />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="length">Длительность</label>
+                          <input
+                            type="text"
+                            value={play.length}
+                            name="length"
+                            id="length"
+                          />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="rating">Рейтинг</label>
+                          <input
+                            type="text"
+                            value={play.rating}
+                            name="rating"
+                            id="rating"
+                          />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="slug">Адрес</label>
+                          <input type="text" value={play.slug} name="slug" id="slug" />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="youtubeLink">Youtube ссылка</label>
+                          <input
+                            type="url"
+                            value={play.youtubeLink}
+                            name="youtubeLink"
+                            id="youtubeLink"
+                          />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="thumbnail">Основное фото</label>
+                          <input
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            name="thumbnail"
+                            id="thumbnail"
+                          />
+                        </div>
+                        <div className="cms_data">
+                          <label htmlFor="photos">Другие фото</label>
+                          <input
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            name="photos"
+                            id="photos"
+                            multiple
+                          />
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 </React.Fragment>
               );

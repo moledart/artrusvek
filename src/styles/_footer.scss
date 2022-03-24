@@ -2,9 +2,6 @@ footer {
   background-color: $grey;
   padding: 2rem 5%;
   margin-top: auto;
-  //   position: fixed;
-  //   bottom: 0;
-  //   width: 100%;
 
   .logo {
     margin: auto 0;
@@ -13,8 +10,19 @@ footer {
   .columns {
     max-width: 1280px;
     margin: 0 auto;
+    width: 100%;
+    flex-direction: column;
     display: flex;
     justify-content: space-between;
+    row-gap: 2rem;
+
+    &:nth-child(2) {
+      order: 1;
+    }
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
 
     h4 {
       color: $white-text;
