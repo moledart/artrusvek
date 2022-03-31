@@ -31,25 +31,25 @@ const App = () => {
   return (
     <div className="App">
       <Nav />
-      <AnimatePresence exitBeforeEnter>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/plays" element={<Plays />} />
-          <Route path="/plays/:slug" element={<PlayDetail />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/team/:slug" element={<ActorDetail />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>Ой, кажется мы не туда попали!</p>
-              </main>
-            }
-          />
-        </Routes>
-      </AnimatePresence>
+      {/* <AnimatePresence exitBeforeEnter> */}
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/plays" element={<Plays />} />
+        <Route path="/plays/:slug" element={<PlayDetail />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/team/:slug" element={<ActorDetail />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>Ой, кажется мы не туда попали!</p>
+            </main>
+          }
+        />
+      </Routes>
+      {/* </AnimatePresence> */}
       <Footer />
     </div>
   );

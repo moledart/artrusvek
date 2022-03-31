@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+//Redux
+import { useSelector } from "react-redux";
+import { selectActorBySlug, selectAllPlays } from "../reducers/dataSlice";
 //Router
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -7,38 +10,32 @@ import SocialLinks from "../components/SocialLinks";
 //Framer
 import { motion, usePresence } from "framer-motion";
 import { PageAnimation } from "../components/PageAnimation";
-//Redux
-import { useSelector } from "react-redux";
 
 const ActorDetail = () => {
-  //Getting data back
-  const { plays, actors, status } = useSelector((state) => state.data);
   //Get location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
 
-  const [actor, setActor] = useState({});
-  const [involvedPlays, setInvolvedPlays] = useState([]);
+  //Getting data from the store
+  const actor = useSelector((state) => selectActorBySlug(state, pathId));
+  const involvedPlays = useSelector((state) => {
+    const allPlays = selectAllPlays(state);
+    return allPlays.filter((play) => play.slug === actor.playedIn);
+  });
+  const canLoad = actor && involvedPlays;
 
   useEffect(() => {
-    if (status === "resolved") {
-      setActor(actors.find((actor) => actor.slug === pathId));
-    }
     window.scrollTo(0, 0);
-  }, [actors]);
-
-  useEffect(() => {
-    setInvolvedPlays(plays.filter((play) => play.slug === actor.playedIn));
-  }, [actor]);
+  }, []);
 
   return (
-    <>
-      <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
-        {Object.entries(actor).length > 0 && status === "resolved" && (
+    <React.Fragment>
+      {canLoad && (
+        <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
           <div className="actor_detail">
             <div className="actor_bio">
               <div className="photo">
-                <img src={actor.photo} alt="" />
+                <img src={actor.photo} alt={actor.name} />
               </div>
               <div className="info">
                 <h2>{actor.name}</h2>
@@ -71,9 +68,9 @@ const ActorDetail = () => {
               </>
             )}
           </div>
-        )}
-      </motion.main>
-    </>
+        </motion.main>
+      )}
+    </React.Fragment>
   );
 };
 

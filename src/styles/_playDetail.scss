@@ -1,14 +1,17 @@
 .play_detail {
   max-width: 960px;
-  margin: 3rem auto 0;
+  margin: 1rem auto 0;
 
-  .play_thumbnail img {
-    width: 100%;
+  @media screen and (min-width: 992px) {
+    margin: 3rem auto 0;
+  }
 
-    object-fit: cover;
-    object-position: center top;
-    aspect-ratio: 2/1;
-    margin-top: 1rem;
+  h2 {
+    font-size: 1.5rem;
+
+    @media screen and (min-width: 767px) {
+      font-size: 2rem;
+    }
   }
 
   .detail_header {
@@ -16,13 +19,24 @@
     justify-content: space-between;
     align-items: stretch;
 
+    .play_name {
+      display: flex;
+      h1 {
+        font-size: 1.5rem;
+        line-height: 100%;
+        align-self: center;
+        @media screen and (min-width: 767px) {
+          font-size: 2rem;
+        }
+      }
+    }
+
     .rating_wrapper {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
     .rating {
-      height: 100%;
       background-color: $primary;
       display: flex;
       align-items: center;
@@ -31,21 +45,36 @@
       border-radius: 0.2rem;
       color: $white-text;
       font-weight: bold;
-      width: 70px;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  .play_thumbnail img {
+    aspect-ratio: 3/2;
+    width: 100%;
+    object-fit: cover;
+    object-position: center top;
+    margin-top: 1rem;
+    @media screen and (min-width: 992px) {
+      aspect-ratio: 2/1;
     }
   }
 
   .play_params {
     display: flex;
-    gap: 4rem;
+    column-gap: 4rem;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: 992px) {
+    }
   }
 
   section {
-    padding: 1.5rem 0;
+    padding: 2rem 0;
   }
 
   h2 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .swiper-button-next,

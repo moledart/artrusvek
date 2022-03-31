@@ -15,6 +15,12 @@ nav {
     overflow: hidden;
     background-color: $black;
     box-shadow: 0px 6px 16px $black;
+
+    @media screen and (min-width: 992px) {
+      position: relative;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
   }
 
   .menu_button {
@@ -30,6 +36,10 @@ nav {
     text-transform: uppercase;
     width: 116px;
 
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+
     &:hover {
       background-color: $primary-dark;
       color: $white-text;
@@ -43,7 +53,6 @@ nav {
     align-items: flex-end;
     background-color: $black;
     padding: 5rem 0;
-    height: 100%;
     row-gap: 1rem;
     height: 100vh;
 
@@ -53,14 +62,16 @@ nav {
       transition: all 0.2s ease-out;
       color: $grey-text;
       font-size: 1rem;
+      width: 100%;
+      text-align: end;
+
+      @media screen and (min-width: 992px) {
+        width: auto;
+      }
 
       &:hover {
         background-color: $grey;
         color: $primary;
-      }
-      @media screen and (max-width: 767px) {
-        width: 100%;
-        text-align: end;
       }
     }
 
@@ -71,15 +82,28 @@ nav {
       color: $primary;
       background-color: #161616;
       font-size: 1rem;
-      @media screen and (max-width: 767px) {
-        width: 100%;
-        text-align: end;
+      width: 100%;
+      text-align: end;
+
+      @media screen and (min-width: 992px) {
+        width: auto;
       }
     }
   }
 
   .nav_links-hidden {
     display: none;
+  }
+
+  .nav_links-fs {
+    display: none;
+    @media screen and (min-width: 992px) {
+      width: auto;
+      display: flex;
+      height: auto;
+      flex-direction: row;
+      padding: 0;
+    }
   }
 }
 

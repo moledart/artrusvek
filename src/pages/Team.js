@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 //Redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 //Components
 import Actor from "../components/Actor";
 //Framer
 import { motion } from "framer-motion";
 import { PageAnimation } from "../components/PageAnimation";
+import { selectAllActors } from "../reducers/dataSlice";
 
 const Actors = () => {
   window.scrollTo(0, 0);
-  const { actors = [], status } = useSelector((state) => state.data);
+  const actors = useSelector(selectAllActors);
   const producers = actors.filter((actor) => actor.role === "продюсер");
   const directors = actors.filter((actor) => actor.role === "режиссер");
   const crew = actors.filter((actor) => actor.role === "актер");

@@ -1,6 +1,10 @@
 .actor_detail {
   max-width: 960px;
-  margin: 3rem auto 0;
+  margin: 1rem auto 0;
+
+  @media screen and (min-width: 992px) {
+    margin: 3rem auto 0;
+  }
 
   a {
     color: $white-text;
@@ -30,17 +34,26 @@
 }
 .actor_bio {
   display: flex;
-  column-gap: 2rem;
-  .photo {
-    width: 40%;
-    img {
-      object-fit: cover;
-      aspect-ratio: 5/7;
-      width: 100%;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+
+  h2 {
+    font-size: 1.5rem;
+
+    @media screen and (min-width: 767px) {
+      font-size: 2rem;
     }
   }
-  .info {
-    width: 60%;
+  .photo {
+    width: 100%;
+    @media screen and (min-width: 767px) {
+      width: 40%;
+    }
+    img {
+      object-fit: cover;
+      aspect-ratio: 5/6;
+      width: 100%;
+    }
   }
 
   .social_links {

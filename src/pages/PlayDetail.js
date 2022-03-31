@@ -1,51 +1,47 @@
 import React, { useEffect, useState } from "react";
-//Router
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-//Components
-import Actor from "../components/Actor";
-//Framer
-import { motion, usePresence } from "framer-motion";
-import { PageAnimation } from "../components/PageAnimation";
 //Redux
 import { useSelector } from "react-redux";
+import { selectAllActors, selectPlayBySlug } from "../reducers/dataSlice";
+//Router
+import { useLocation } from "react-router-dom";
+//Components
+import Actor from "../components/Actor";
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+//Framer
+import { motion } from "framer-motion";
+import { PageAnimation } from "../components/PageAnimation";
 
 const PlayDetail = () => {
-  //Getting data back
-  const { plays, actors, status } = useSelector((state) => state.data);
   //Get location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
 
-  const [play, setPlay] = useState({});
-  const [involvedActors, setInvolvedActors] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
+  //Getting data from the store
+  const play = useSelector((state) => selectPlayBySlug(state, pathId));
+  const involvedActors = useSelector((state) => {
+    const allActors = selectAllActors(state);
+    return allActors.filter((actor) => actor.playedIn === play.slug);
+  });
+  const canLoad = play && involvedActors;
+
+  //State
   const [showDescription, setShowDescription] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (status === "resolved") {
-      setPlay(plays.find((play) => play.slug === pathId));
-    }
-  }, [plays]);
-  console.log(play.photos);
-
-  useEffect(() => {
-    setInvolvedActors(actors.filter((actor) => actor.playedIn === play.slug));
-  }, [play]);
+  }, []);
 
   const handleShowDescription = () => {
     setShowDescription(true);
   };
 
   return (
-    <>
-      {Object.entries(play).length > 0 && status === "resolved" && (
+    <React.Fragment>
+      {canLoad && (
         <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
           <div className="play_detail">
             <div className="detail_header">
@@ -58,11 +54,7 @@ const PlayDetail = () => {
               </div>
             </div>
             <div className="play_thumbnail">
-              <img
-                src={process.env.PUBLIC_URL + play.thumbnail}
-                alt={play.name}
-                height="480px"
-              />
+              <img src={process.env.PUBLIC_URL + play.thumbnail} alt={play.name} />
             </div>
             <div className="play_params">
               <div className="play_param">
@@ -98,12 +90,16 @@ const PlayDetail = () => {
                 <Swiper
                   navigation={true}
                   breakpoints={{
+                    300: {
+                      slidesPerView: 2.2,
+                      spaceBetween: 20,
+                    },
                     640: {
-                      slidesPerView: 2,
+                      slidesPerView: 4,
                       spaceBetween: 20,
                     },
                     768: {
-                      slidesPerView: 3,
+                      slidesPerView: 4,
                       spaceBetween: 32,
                     },
                     1024: {
@@ -122,23 +118,25 @@ const PlayDetail = () => {
                 </Swiper>
               </>
             </section>
-            <section className="play_video">
-              <h2>Видео</h2>
-              <iframe
-                width="100%"
-                height="auto"
-                src={play.youtubeLink}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                style={{ aspectRatio: "16/9" }}
-              ></iframe>
-            </section>
+            {play.youtubeLink && (
+              <section className="play_video">
+                <h2>Видео</h2>
+                <iframe
+                  width="100%"
+                  height="auto"
+                  src={play.youtubeLink}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ aspectRatio: "16/9" }}
+                ></iframe>
+              </section>
+            )}
           </div>
         </motion.main>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

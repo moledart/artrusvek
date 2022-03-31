@@ -37,3 +37,11 @@ export const dataSlice = createSlice({
 export const {} = dataSlice.actions;
 
 export default dataSlice.reducer;
+
+export const selectAllPlays = (state) => state.data.plays;
+export const selectPlayBySlug = (state, slug) =>
+  state.data.plays.find((play) => play.slug === slug);
+
+export const selectAllActors = (state) => state.data.actors;
+export const selectActorBySlug = (state, slug) =>
+  state.data.actors.find((actor) => actor.slug === slug);
