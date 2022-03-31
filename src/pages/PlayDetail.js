@@ -6,11 +6,12 @@ import { selectAllActors, selectPlayBySlug } from "../reducers/dataSlice";
 import { useLocation } from "react-router-dom";
 //Components
 import Actor from "../components/Actor";
+import { PhotoModal } from "../components/PhotoModal";
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import { Navigation, FreeMode } from "swiper";
 //Framer
 import { motion } from "framer-motion";
 import { PageAnimation } from "../components/PageAnimation";
@@ -30,6 +31,8 @@ const PlayDetail = () => {
 
   //State
   const [showDescription, setShowDescription] = useState(false);
+  const [clickedPhoto, setClickedPhoto] = useState("");
+  const [isFullScreen, setFullScreen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,8 +42,19 @@ const PlayDetail = () => {
     setShowDescription(true);
   };
 
+  const handleShowPhoto = (photo) => {
+    setClickedPhoto(photo);
+    setFullScreen(true);
+  };
+
   return (
     <React.Fragment>
+      <PhotoModal
+        clickedPhoto={clickedPhoto}
+        setClickedPhoto={setClickedPhoto}
+        isFullScreen={isFullScreen}
+        setFullScreen={setFullScreen}
+      />
       {canLoad && (
         <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
           <div className="play_detail">
@@ -84,6 +98,46 @@ const PlayDetail = () => {
                 </span>
               </p>
             </section>
+            <section className="play_photos">
+              <h2>Фото спектакля</h2>
+              <>
+                <Swiper
+                  navigation={true}
+                  breakpoints={{
+                    300: {
+                      slidesPerView: 1.2,
+                      spaceBetween: 20,
+                    },
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 3,
+                      spaceBetween: 24,
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      spaceBetween: 24,
+                    },
+                  }}
+                  className="mySwiper"
+                  freeMode={true}
+                  modules={[Navigation, FreeMode]}
+                >
+                  {play.photos.map((photo, index) => (
+                    <SwiperSlide key={index}>
+                      <img
+                        src={photo}
+                        alt="Фото спектакля"
+                        className="carousel_photo"
+                        onClick={() => handleShowPhoto(photo)}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </>
+            </section>
             <section className="play_actors">
               <h2>В ролях</h2>
               <>
@@ -92,15 +146,15 @@ const PlayDetail = () => {
                   breakpoints={{
                     300: {
                       slidesPerView: 2.2,
-                      spaceBetween: 20,
+                      spaceBetween: 24,
                     },
                     640: {
                       slidesPerView: 4,
-                      spaceBetween: 20,
+                      spaceBetween: 24,
                     },
                     768: {
                       slidesPerView: 4,
-                      spaceBetween: 32,
+                      spaceBetween: 24,
                     },
                     1024: {
                       slidesPerView: 6,
