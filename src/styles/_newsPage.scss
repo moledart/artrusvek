@@ -1,0 +1,14 @@
+.news {
+  h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+.news_page_wrapper {
+  display: grid;
+  @media screen and (min-width: 767px) {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  }
+
+  gap: 2rem;
+}
