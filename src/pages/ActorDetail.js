@@ -35,7 +35,7 @@ const ActorDetail = () => {
           <div className="actor_detail">
             <div className="actor_bio">
               <div className="photo">
-                <img src={actor.photo} alt={actor.name} />
+                <img src={actor.photo} alt={actor.name} loading="lazy" />
               </div>
               <div className="info">
                 <h2>{actor.name}</h2>

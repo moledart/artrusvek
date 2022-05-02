@@ -20,7 +20,7 @@ const BlogCard = ({ post }) => {
   return (
     <a href={source} className="blog_card">
       <div className="blog_thumbnail">
-        <img src={thumbnail} alt={briefInfo} />
+        <img src={thumbnail} alt={briefInfo} loading="lazy" />
       </div>
       <div className="blog_info">
         <span className="blog_tag">{tag}</span>

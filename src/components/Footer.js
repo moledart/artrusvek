@@ -47,11 +47,11 @@ const Footer = () => {
             </div>
             <div className="contacts">
               <a href="tel:+79263027135" className="contact">
-                <FontAwesomeIcon icon={faAt} size="xl" className="contact_icon" />
+                <FontAwesomeIcon icon={faPhone} size="xl" className="contact_icon" />
                 <span>+7 (926) 302-71-35</span>
               </a>
               <a href="mailto:lazarevarusvek@mail.ru" className="contact">
-                <FontAwesomeIcon icon={faPhone} size="xl" className="contact_icon" />
+                <FontAwesomeIcon icon={faAt} size="xl" className="contact_icon" />
                 <span>lazarevarusvek@mail.ru</span>
               </a>
             </div>

@@ -7,7 +7,7 @@ const Play = ({ play }) => {
   return (
     <Link to={`/plays/${slug}`} className="play">
       <div className="play_thumbnail">
-        <img src={process.env.PUBLIC_URL + thumbnail} />
+        <img src={process.env.PUBLIC_URL + thumbnail} alt={name} loading="lazy" />
         <div className="play_rating">{rating}</div>
       </div>
       <div className="play_info">

@@ -68,7 +68,11 @@ const PlayDetail = () => {
               </div>
             </div>
             <div className="play_thumbnail">
-              <img src={process.env.PUBLIC_URL + play.thumbnail} alt={play.name} />
+              <img
+                src={process.env.PUBLIC_URL + play.thumbnail}
+                alt={play.name}
+                loading="lazy"
+              />
             </div>
             <div className="play_params">
               <div className="play_param">
@@ -132,6 +136,7 @@ const PlayDetail = () => {
                         alt="Фото спектакля"
                         className="carousel_photo"
                         onClick={() => handleShowPhoto(photo)}
+                        loading="lazy"
                       />
                     </SwiperSlide>
                   ))}

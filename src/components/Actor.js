@@ -7,7 +7,7 @@ const Actor = ({ actor, roleVisible }) => {
   return (
     <Link to={`/team/${slug}`} className="actor">
       <div className="actor_photo">
-        <img src={photo} alt="" width="100%" />
+        <img src={photo} alt="" width="100%" loading="lazy" />
       </div>
       <div className="actor_description">
         <h3 className="actor_name">{name}</h3>
