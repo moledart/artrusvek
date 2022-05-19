@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 //Redux
-import { useSelector } from "react-redux";
-import { selectActorBySlug, selectAllPlays } from "../reducers/dataSlice";
+import { useSelector } from 'react-redux';
+import { selectActorBySlug, selectAllPlays } from '../../reducers/dataSlice';
 //Router
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //Components
-import SocialLinks from "../components/SocialLinks";
+import SocialLinks from '../../components/SocialLinks';
 //Framer
-import { motion, usePresence } from "framer-motion";
-import { PageAnimation } from "../components/PageAnimation";
+import { motion, usePresence } from 'framer-motion';
+import { PageAnimation } from '../../components/PageAnimation';
 
 const ActorDetail = () => {
   //Get location
   const location = useLocation();
-  const pathId = location.pathname.split("/")[2];
+  const pathId = location.pathname.split('/')[2];
 
   //Getting data from the store
   const actor = useSelector((state) => selectActorBySlug(state, pathId));
@@ -25,13 +25,20 @@ const ActorDetail = () => {
   const canLoad = actor && involvedPlays;
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (
     <React.Fragment>
       {canLoad && (
-        <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
+        <motion.main
+          variants={PageAnimation}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
           <div className="actor_detail">
             <div className="actor_bio">
               <div className="photo">
@@ -50,21 +57,27 @@ const ActorDetail = () => {
                     <span className="param">Спектакли</span>
                     <div className="plays_involved">
                       {involvedPlays.map((play) => (
-                        <Link to={`/plays/${play.slug}`} className="play" key={play.id}>
+                        <Link
+                          to={`/plays/${play.slug}`}
+                          className="play"
+                          key={play.id}
+                        >
                           {play.name}
                         </Link>
                       ))}
                     </div>
                   </>
                 ) : (
-                  ""
+                  ''
                 )}
               </div>
             </div>
             {actor.description && (
               <>
                 <span className="param">Описание</span>
-                <div dangerouslySetInnerHTML={{ __html: actor.description }}></div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: actor.description }}
+                ></div>
               </>
             )}
           </div>

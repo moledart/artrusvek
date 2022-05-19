@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 //Redux
-import { useSelector } from "react-redux";
-import { selectUser } from "../reducers/userSlice";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../reducers/userSlice';
 //Firebase
-import { auth } from "../firebase-config";
+import { auth } from '../../firebase-config';
 //Components
-import Login from "./Login";
-import AdminAside from "../components/AdminAside";
-import AdminTableData from "../components/AdminTableData";
+import Login from '../login';
+import AdminAside from '../../components/AdminAside';
+import AdminTableData from '../../components/AdminTableData';
 //Framer
-import { motion } from "framer-motion";
-import { PageAnimation } from "../components/PageAnimation";
+import { motion } from 'framer-motion';
+import { PageAnimation } from '../../components/PageAnimation';
 
 const Admin = () => {
   //User and logout
@@ -22,7 +22,12 @@ const Admin = () => {
   const [selectedData, setSelectedData] = useState([]);
 
   return (
-    <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
+    <motion.main
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       {user ? (
         <section className="admin_section">
           <div className="section_header">
@@ -32,7 +37,10 @@ const Admin = () => {
             </button>
           </div>
           <div className="cms_content">
-            <AdminAside selectedData={selectedData} setSelectedData={setSelectedData} />
+            <AdminAside
+              selectedData={selectedData}
+              setSelectedData={setSelectedData}
+            />
             <AdminTableData
               selectedData={selectedData}
               setSelectedData={setSelectedData}

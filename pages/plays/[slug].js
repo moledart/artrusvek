@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 //Redux
-import { useSelector } from "react-redux";
-import { selectAllActors, selectPlayBySlug } from "../reducers/dataSlice";
+import { useSelector } from 'react-redux';
+import { selectAllActors, selectPlayBySlug } from '../../reducers/dataSlice';
 //Router
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 //Components
-import Actor from "../components/Actor";
-import { PhotoModal } from "../components/PhotoModal";
+import Actor from '../../components/Actor';
+import { PhotoModal } from '../../components/PhotoModal';
 // Swiper
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation, FreeMode } from "swiper";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation, FreeMode } from 'swiper';
 //Framer
-import { motion } from "framer-motion";
-import { PageAnimation } from "../components/PageAnimation";
+import { motion } from 'framer-motion';
+import { PageAnimation } from '../../components/PageAnimation';
 
 const PlayDetail = () => {
   //Get location
   const location = useLocation();
-  const pathId = location.pathname.split("/")[2];
+  const pathId = location.pathname.split('/')[2];
 
   //Getting data from the store
   const play = useSelector((state) => selectPlayBySlug(state, pathId));
@@ -31,11 +31,13 @@ const PlayDetail = () => {
 
   //State
   const [showDescription, setShowDescription] = useState(false);
-  const [clickedPhoto, setClickedPhoto] = useState("");
+  const [clickedPhoto, setClickedPhoto] = useState('');
   const [isFullScreen, setFullScreen] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   const handleShowDescription = () => {
@@ -56,7 +58,12 @@ const PlayDetail = () => {
         setFullScreen={setFullScreen}
       />
       {canLoad && (
-        <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
+        <motion.main
+          variants={PageAnimation}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
           <div className="play_detail">
             <div className="detail_header">
               <div className="play_name">
@@ -95,7 +102,7 @@ const PlayDetail = () => {
                   ? `${play.description}`
                   : `${play.description.substring(0, 500)}...`}
                 <span
-                  style={{ color: "#fff", cursor: "pointer" }}
+                  style={{ color: '#fff', cursor: 'pointer' }}
                   onClick={handleShowDescription}
                 >
                   {!showDescription && `Читать далее`}
@@ -188,7 +195,7 @@ const PlayDetail = () => {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  style={{ aspectRatio: "16/9" }}
+                  style={{ aspectRatio: '16/9' }}
                 ></iframe>
               </section>
             )}

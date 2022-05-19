@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { auth } from "../firebase-config";
-import { selectUser } from "../reducers/userSlice";
-import { login, logout } from "../reducers/userSlice";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { auth } from '../../firebase-config';
+import { selectUser } from '../../reducers/userSlice';
+import { login, logout } from '../../reducers/userSlice';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleLogin = (e) => {
     e.preventDefault();
-    if (email && password !== "") {
+    if (email && password !== '') {
       signInWithEmailAndPassword(auth, email, password)
-        .then((data) => console.log("Вы вошли"))
+        .then((data) => console.log('Вы вошли'))
         .catch((err) => alert(err));
     }
   };
@@ -25,8 +25,10 @@ const Login = () => {
         dispatch(
           login({
             id: authUser.uid,
-            name: authUser.displayName ? "Татьяна" : "Татьяна",
-            pic: authUser.photoURL ? authUser.photoURL : "https://picsum.photos/536/354",
+            name: authUser.displayName ? 'Татьяна' : 'Татьяна',
+            pic: authUser.photoURL
+              ? authUser.photoURL
+              : 'https://picsum.photos/536/354',
           })
         );
       } else {

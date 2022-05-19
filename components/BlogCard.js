@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 
 const BlogCard = ({ post }) => {
   const {
@@ -15,8 +14,8 @@ const BlogCard = ({ post }) => {
     video,
   } = post;
 
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  const date = new Date(published).toLocaleDateString("ru-RU", options);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const date = new Date(published).toLocaleDateString('ru-RU', options);
   return (
     <a href={source} className="blog_card">
       <div className="blog_thumbnail">

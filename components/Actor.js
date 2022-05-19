@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 //Router
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 
 const Actor = ({ actor, roleVisible }) => {
   const { photo, name, role, slug } = actor;
   return (
-    <Link to={`/team/${slug}`} className="actor">
+    <Link href={`/team/${slug}`} className="actor">
       <div className="actor_photo">
         <img src={photo} alt="" width="100%" loading="lazy" />
       </div>

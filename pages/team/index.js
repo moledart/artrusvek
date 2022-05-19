@@ -1,25 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 //Components
-import Actor from "../components/Actor";
+import Actor from '../../components/Actor';
 //Framer
-import { motion } from "framer-motion";
-import { PageAnimation } from "../components/PageAnimation";
-import { selectAllActors } from "../reducers/dataSlice";
+import { motion } from 'framer-motion';
+import { PageAnimation } from '../../components/PageAnimation';
+import { selectAllActors } from '../../reducers/dataSlice';
 
 const Actors = () => {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }, []);
   const actors = useSelector(selectAllActors);
-  const producers = actors.filter((actor) => actor.role === "продюсер");
-  const directors = actors.filter((actor) => actor.role === "режиссер");
-  const crew = actors.filter((actor) => actor.role === "актер");
-  const composers = actors.filter((actor) => actor.role === "композитор");
-  const authors = actors.filter((actor) => actor.role === "автор");
-  const arrangers = actors.filter((actor) => actor.role === "аранжировщик");
+  const producers = actors.filter((actor) => actor.role === 'продюсер');
+  const directors = actors.filter((actor) => actor.role === 'режиссер');
+  const crew = actors.filter((actor) => actor.role === 'актер');
+  const composers = actors.filter((actor) => actor.role === 'композитор');
+  const authors = actors.filter((actor) => actor.role === 'автор');
+  const arrangers = actors.filter((actor) => actor.role === 'аранжировщик');
 
   return (
-    <motion.main variants={PageAnimation} initial="hidden" animate="show" exit="exit">
+    <motion.main
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
       <section className="team">
         <h2>Творческая группа</h2>
         <div className="wrapper">
@@ -30,7 +39,9 @@ const Actors = () => {
             </div>
             <div className="actors_expand">
               {producers.length &&
-                producers.map((actor) => <Actor actor={actor} key={actor.id} />)}
+                producers.map((actor) => (
+                  <Actor actor={actor} key={actor.id} />
+                ))}
             </div>
           </div>
           <div className="actor_group">
@@ -40,7 +51,9 @@ const Actors = () => {
             </div>
             <div className="actors_expand">
               {directors.length &&
-                directors.map((actor) => <Actor actor={actor} key={actor.id} />)}
+                directors.map((actor) => (
+                  <Actor actor={actor} key={actor.id} />
+                ))}
             </div>
           </div>
           <div className="actor_group">
@@ -60,7 +73,9 @@ const Actors = () => {
             </div>
             <div className="actors_expand">
               {composers.length &&
-                composers.map((actor) => <Actor actor={actor} key={actor.id} />)}
+                composers.map((actor) => (
+                  <Actor actor={actor} key={actor.id} />
+                ))}
             </div>
           </div>
           <div className="actor_group">
@@ -70,7 +85,9 @@ const Actors = () => {
             </div>
             <div className="actors_expand">
               {arrangers.length &&
-                arrangers.map((actor) => <Actor actor={actor} key={actor.id} />)}
+                arrangers.map((actor) => (
+                  <Actor actor={actor} key={actor.id} />
+                ))}
             </div>
           </div>
 
@@ -80,7 +97,8 @@ const Actors = () => {
               <div className="line"></div>
             </div>
             <div className="actors_expand">
-              {crew.length && crew.map((actor) => <Actor actor={actor} key={actor.id} />)}
+              {crew.length &&
+                crew.map((actor) => <Actor actor={actor} key={actor.id} />)}
             </div>
           </div>
         </div>
