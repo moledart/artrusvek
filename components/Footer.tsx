@@ -39,7 +39,7 @@ const Footer = () => {
             </Link>
           </ul>
         </div>
-        <div className="footer_column">
+        <div className="footer_column" id="contacts">
           <h4>Контакты</h4>
           <div className="contacts_wrapper">
             <div className="contact_greeting">

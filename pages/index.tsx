@@ -6,11 +6,11 @@ import { SectionHeader } from '../components/SectionHeader';
 import BlogCard from '../components/BlogCard';
 //Redux
 import { useSelector } from 'react-redux';
-import {
-  selectAllActors,
-  selectAllPlays,
-  selectAllNews,
-} from '../reducers/dataSlice';
+// import {
+//   selectAllActors,
+//   selectAllPlays,
+//   selectAllNews,
+// } from '../reducers/dataSlice';
 //Framer
 import { motion } from 'framer-motion';
 import { PageAnimation } from '../components/PageAnimation';
