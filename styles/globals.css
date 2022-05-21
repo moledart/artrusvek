@@ -12,3 +12,9 @@
     @apply text-neutral-300 bg-night;
   }
 }
+
+@layer components {
+  li > .active {
+    @apply bg-neutral-900 text-main hover:bg-neutral-900 hover:text-main;
+  }
+}

@@ -1,29 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-const links = [
-  {
-    text: 'Главная',
-    path: '/',
-  },
-  {
-    text: 'Спектакли',
-    path: '/plays',
-  },
-  {
-    text: 'Творческая группа',
-    path: '/team',
-  },
-  {
-    text: 'Новости',
-    path: '/news',
-  },
-  {
-    text: 'Контакты',
-    path: '#contacts',
-  },
-];
+import Logo from './Logo';
+import { links } from './util';
 
 const Nav = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +15,7 @@ const Nav = () => {
           className={`flex items-center w-full justify-end py-4 px-8 rounded-sm hover:bg-dawn hover:text-main transition-all duration-200 ease-in-out lg:w-auto ${
             router.pathname == path ? 'active' : ''
           }`}
-          onClick={() => setIsVisible(!isVisible)}
+          onClick={() => setIsVisible(false)}
         >
           {text}
         </a>
@@ -55,14 +34,7 @@ const Nav = () => {
     >
       <nav className="flex flex-col h-full items-stretch lg:flex-row lg:justify-between leading-none">
         <div className="flex w-full justify-between lg:w-auto">
-          <div className="flex flex-col">
-            <span className="text-[32px] font-bold tracking-wider">
-              ArtRusVek
-            </span>
-            <div className="text-sm text-zinc-500 tracking-wide">
-              продюссерская компания
-            </div>
-          </div>
+          <Logo />
           <button
             className="rounded-lg border-zinc-400 border w-[116px] lg:hidden"
             onClick={() => setIsVisible(!isVisible)}

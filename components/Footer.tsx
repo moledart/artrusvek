@@ -1,75 +1,57 @@
 import React from 'react';
-//Router
 import Link from 'next/link';
-//Font awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAt, faPhone } from '@fortawesome/free-solid-svg-icons';
-//Framer
-import { motion } from 'framer-motion';
+//Icons
+import { PhoneIcon, MailIcon } from '@heroicons/react/solid';
+
+import Logo from './Logo';
+import { links } from './util';
 
 const Footer = () => {
+  const navLinks = links.map(({ path, text }, index) => (
+    <li key={index}>
+      <Link href={path}>
+        <a
+          className={`flex w-full rounded-sm hover:text-main transition-all duration-200 ease-in-out text-zinc-500`}
+        >
+          {text}
+        </a>
+      </Link>
+    </li>
+  ));
+
   return (
-    <motion.footer
-      id="footer"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
-    >
-      {/* <div className="columns">
-        <div className="footer_column">
-          <Link href="/" className="logo">
-            <span>ArtRusVek</span>
-            <div className="small_text">продюссерская компания</div>
-          </Link>
+    <footer className="bg-zinc-800 mt-auto">
+      <div className="px-5 py-12 gap-6 flex flex-col md:justify-between md:flex-row max-w-7xl mx-auto">
+        <div className="flex-1">
+          <Logo />
         </div>
-        <div className="footer_column">
+        <div className="flex-1">
           <h4>Карта сайта</h4>
-          <ul>
-            <Link href="/" className="nav_link">
-              Главная
-            </Link>
-            <Link href="/plays" className="nav_link">
-              Спектакли
-            </Link>
-            <Link href="/team" className="nav_link">
-              Творческая группа
-            </Link>
-            <Link href="/news" className="nav_link">
-              Новости
-            </Link>
-          </ul>
+          <ul>{navLinks}</ul>
         </div>
-        <div className="footer_column" id="contacts">
+        <div id="contacts" className="flex-1">
           <h4>Контакты</h4>
-          <div className="contacts_wrapper">
-            <div className="contact_greeting">
-              <p>
-                По вопросам сотрудничества нас можно найти по следующим
-                координатам
-              </p>
-            </div>
-            <div className="contacts">
-              <a href="tel:+79263027135" className="contact">
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  size="xl"
-                  className="contact_icon"
-                />
-                <span>+7 (926) 302-71-35</span>
-              </a>
-              <a href="mailto:lazarevarusvek@mail.ru" className="contact">
-                <FontAwesomeIcon
-                  icon={faAt}
-                  size="xl"
-                  className="contact_icon"
-                />
-                <span>lazarevarusvek@mail.ru</span>
-              </a>
-            </div>
-          </div>
+          <p className="text-zinc-500 mb-4">
+            По вопросам сотрудничества нас можно найти по&nbsp;следующим
+            координатам
+          </p>
+          <a
+            href="tel:+79263027135"
+            className="flex hover:text-main mb-2 transition-all duration-200 ease-in-out"
+          >
+            <PhoneIcon className="w-7 h-7 mr-2" />
+            <p className="text-xl">+7 (926) 302-71-35</p>
+          </a>
+          <a
+            href="mailto:lazarevarusvek@mail.ru"
+            className="flex hover:text-main transition-all duration-200 ease-in-out"
+          >
+            <MailIcon className="w-7 h-7 mr-2" />
+            <p className="text-xl">lazarevarusvek@mail.ru</p>
+          </a>
         </div>
-      </div> */}
-    </motion.footer>
+      </div>
+    </footer>
   );
 };
 
