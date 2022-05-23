@@ -12,7 +12,7 @@ const Nav = () => {
     <li key={index} className="inline-flex">
       <Link href={path}>
         <a
-          className={`flex items-center w-full justify-end py-4 px-8 rounded-sm hover:bg-dawn hover:text-main transition-all duration-200 ease-in-out lg:w-auto ${
+          className={`flex items-center w-full justify-end py-4 px-8 rounded-sm hover:bg-dawn hover:text-main basic-animation lg:w-auto ${
             router.pathname == path ? 'active' : ''
           }`}
           onClick={() => setIsVisible(false)}
@@ -55,5 +55,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
-// items-center py-4 px-8 w-full text-right rounded-sm hover:bg-dawn hover:text-main transition-all duration-200 ease-in-out lg:text-left lg:w-auto

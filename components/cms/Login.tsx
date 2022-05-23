@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { auth } from '../firebase-config';
-import { selectUser } from '../reducers/userSlice';
-import { login, logout } from '../reducers/userSlice';
-import { signInWithEmailAndPassword, Auth, User } from 'firebase/auth';
+import { auth } from '../../firebase-config';
+import { selectUser } from '../../reducers/userSlice';
+import { login, logout } from '../../reducers/userSlice';
+import { signInWithEmailAndPassword, User, AuthError } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 
 interface LoginProps {
   // handleLogin: (auth: Auth, email: string, password: string) => void;
-  setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+  setAdmin: React.Dispatch<React.SetStateAction<User | undefined>>;
 }
 
-const Login = ({ setUser }: LoginProps) => {
+const Login = ({ setAdmin }: LoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = () => {
-    console.log('started login');
     if (!email || !password) return;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user);
-        setUser(userCredential.user);
+        setAdmin(userCredential.user);
       })
-      .catch((error) => {
+      .catch((error: AuthError) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setErrorMessage(errorCode + ': ' + errorMessage);
       });
   };
 
@@ -47,7 +47,6 @@ const Login = ({ setUser }: LoginProps) => {
           placeholder="@"
           required
           autoComplete="username"
-          className="mt-1 block w-full rounded-md bg-zinc-800 border-transparent focus:border-zinc-800 focus:bg-zinc-700 focus:ring-0"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -60,7 +59,6 @@ const Login = ({ setUser }: LoginProps) => {
           id="password"
           required
           autoComplete="current-password"
-          className="mt-1 block w-full rounded-md bg-zinc-800 border-transparent focus:border-zinc-800 focus:bg-zinc-700 focus:ring-0"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -70,6 +68,7 @@ const Login = ({ setUser }: LoginProps) => {
         value="Войти"
         className="bg-main text-night rounded-md py-3 hover:bg-mainDark transition-all duration-200 ease-in-out"
       ></input>
+      {errorMessage}
     </form>
 
     // {/* <form action="" onSubmit={handleLogin}>

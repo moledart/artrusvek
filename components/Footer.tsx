@@ -11,7 +11,7 @@ const Footer = () => {
     <li key={index}>
       <Link href={path}>
         <a
-          className={`flex w-full rounded-sm hover:text-main transition-all duration-200 ease-in-out text-zinc-500`}
+          className={`flex w-full rounded-sm hover:text-main basic-animation text-zinc-500 mb-1`}
         >
           {text}
         </a>
@@ -26,7 +26,7 @@ const Footer = () => {
           <Logo />
         </div>
         <div className="flex-1">
-          <h4>Карта сайта</h4>
+          <h4 className="mb-2">Карта сайта</h4>
           <ul>{navLinks}</ul>
         </div>
         <div id="contacts" className="flex-1">
@@ -37,14 +37,14 @@ const Footer = () => {
           </p>
           <a
             href="tel:+79263027135"
-            className="flex hover:text-main mb-2 transition-all duration-200 ease-in-out"
+            className="flex hover:text-main mb-2 basic-animation"
           >
             <PhoneIcon className="w-7 h-7 mr-2" />
             <p className="text-xl">+7 (926) 302-71-35</p>
           </a>
           <a
             href="mailto:lazarevarusvek@mail.ru"
-            className="flex hover:text-main transition-all duration-200 ease-in-out"
+            className="flex hover:text-main basic-animation"
           >
             <MailIcon className="w-7 h-7 mr-2" />
             <p className="text-xl">lazarevarusvek@mail.ru</p>
