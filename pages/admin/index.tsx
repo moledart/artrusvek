@@ -33,6 +33,7 @@ const Admin = () => {
       <div className="flex mb-10">
         <h1 className="text-3xl font-bold ">Добро пожаловать, Татьяна!</h1>
         <button
+          type="button"
           className="px-4 bg-zinc-700 rounded-sm ml-4 hover:bg-zinc-600 basic-animation text-sm"
           onClick={handleLogout}
         >
@@ -66,7 +67,10 @@ const Admin = () => {
         <div className="panel">
           <div className="flex">
             <h2>Элементы</h2>
-            <button className="bg-zinc-700 rounded-sm ml-4 hover:bg-zinc-600 basic-animation text-sm flex items-center gap-1 px-4">
+            <button
+              type="button"
+              className="bg-zinc-700 rounded-sm ml-4 hover:bg-zinc-600 basic-animation text-sm flex items-center gap-1 px-4"
+            >
               <PlusIcon className="w-5" />
               Добавить
             </button>
