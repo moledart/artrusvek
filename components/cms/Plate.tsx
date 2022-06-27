@@ -1,28 +1,27 @@
 import React from 'react';
 import Image from 'next/image';
+import { NewsPost } from '../../types/categories';
 
 interface PlateProps {
-  active?: boolean | undefined;
+  el: NewsPost;
+  currentElement: {};
+  setCurrentElement: React.Dispatch<React.SetStateAction<{}>>;
 }
 
-const Plate = ({ active }: PlateProps) => {
+const Plate = ({ el, currentElement, setCurrentElement }: PlateProps) => {
   return (
-    <li className={`flex gap-3 ${active && 'bg-zinc-800'}`}>
+    <li
+      className={`flex gap-3 ${currentElement === el && 'bg-zinc-800'}`}
+      onClick={() => setCurrentElement(el)}
+    >
       <div className="shrink-0 h-[50px]">
-        <Image
-          src="https://i.pinimg.com/564x/d2/e6/42/d2e6425c40a6369e2e4773776d7e2f4d.jpg"
-          width={50}
-          height={50}
-          objectFit="cover"
-        />
+        <Image src={el.thumbnail} width={50} height={50} objectFit="cover" />
       </div>
-      <p className="line-clamp-2 max-h-[50px]">
-        Благовещенцам показали спектакль на злобу дня «Зигзаг удачи» показали
-        спектакль на злобу дня «Зигзаг удачи» Благовещенцам показали спектакль
-        на злобу дня «Зигзаг удачи»
-      </p>
+      <p className="line-clamp-2 max-h-[50px]">{el.name}</p>
     </li>
   );
 };
 
 export default Plate;
+
+// ${active && 'bg-zinc-800'}

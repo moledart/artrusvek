@@ -2,6 +2,10 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['i.pinimg.com'],
+    domains: [
+      'firebasestorage.googleapis.com',
+      'uploads-ssl.webflow.com',
+      'picsum.photos',
+    ],
   },
 };

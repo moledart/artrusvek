@@ -2,56 +2,47 @@ import React from 'react';
 //Components
 import { PlayList } from '../components/PlayList';
 import { ActorList } from '../components/ActorList';
-import { SectionHeader } from '../components/SectionHeader';
-import BlogCard from '../components/BlogCard';
-//Redux
-import { useSelector } from 'react-redux';
-// import {
-//   selectAllActors,
-//   selectAllPlays,
-//   selectAllNews,
-// } from '../reducers/dataSlice';
-//Framer
-import { motion } from 'framer-motion';
-import { PageAnimation } from '../components/PageAnimation';
+import { NewsList } from '../components/NewsList';
 
-const Home = () => {
-  // const news = useSelector(selectAllNews);
+import {
+  getDataFromFirebase,
+  getAllDocumentsFromCollection,
+} from '../components/firebase';
+import { GetServerSideProps } from 'next';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase-config';
+import Section from '../components/Section';
+import NewsPost from '../components/NewsPost';
 
+import { ActorType, NewsPostType, PlayType } from '../types/categories';
+
+interface Props {
+  actors: ActorType[];
+  news: NewsPostType[];
+  plays: PlayType[];
+}
+
+const Home = ({ actors, news, plays }: Props) => {
   return (
-    <div>Hi</div>
-    // <motion.main
-    //   variants={PageAnimation}
-    //   initial="hidden"
-    //   animate="show"
-    //   exit="exit"
-    // >
-    //   <section>
-    //     <SectionHeader
-    //       title="Спектакли"
-    //       link="/plays"
-    //       linkText="Все спектакли"
-    //     />
-    //     <PlayList />
-    //   </section>
-    //   <section>
-    //     <SectionHeader
-    //       title="Творческая группа"
-    //       link="/team"
-    //       linkText="Вся команда"
-    //     />
-    //     <ActorList />
-    //   </section>
-    //   <section>
-    //     <SectionHeader title="Новости" link="/news" linkText="Все новости" />
-    //     <div className="news_wrapper">
-    //       {news.slice(0, 4).map((post) => (
-    //         <BlogCard post={post} key={post.id} />
-    //       ))}
-    //     </div>
-    //   </section>
-    // </motion.main>
+    <>
+      <Section title="Спектакли" link="/plays" linkText="Все спектакли">
+        <PlayList plays={plays} />
+      </Section>
+      <Section title="Творческая группа" link="/team" linkText="Вся команда">
+        <ActorList actors={actors} />
+      </Section>
+      <Section title="Новости" link="/news" linkText="Все новости">
+        <NewsList news={news} />
+      </Section>
+    </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const news = await getAllDocumentsFromCollection('news', 'published', 10);
+  const actors = await getAllDocumentsFromCollection('actors', 'sortId', 10);
+  const plays = await getAllDocumentsFromCollection('plays', 'sortId', 10);
+  return { props: { actors, news, plays } };
 };
 
 export default Home;

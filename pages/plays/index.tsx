@@ -1,35 +1,33 @@
-import React, { useEffect } from 'react';
-//Redux
-import { useSelector } from 'react-redux';
-import { selectAllPlays } from '../../reducers/dataSlice';
+import { GetServerSideProps } from 'next';
+import React from 'react';
+import { getAllDocumentsFromCollection } from '../../components/firebase';
+
 //Components
 import Play from '../../components/Play';
-//Framer
-import { motion } from 'framer-motion';
-import { PageAnimation } from '../../components/PageAnimation';
+import { PlayType } from '../../types/categories';
 
-const Plays = () => {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
-    }
-  }, []);
-  const plays = useSelector(selectAllPlays);
+interface Props {
+  plays: PlayType[];
+}
+
+const Plays = ({ plays }: Props) => {
   const renderedPlays = plays.map((play) => <Play play={play} key={play.id} />);
-
   return (
-    <motion.main
-      variants={PageAnimation}
-      initial="hidden"
-      animate="show"
-      exit="exit"
-    >
-      <section className="plays">
-        <h2>Спектакли</h2>
-        <div className="plays_expand">{renderedPlays}</div>
-      </section>
-    </motion.main>
+    <section className="">
+      <h2 className="text-3xl font-bold leading-8 mb-8">Спектакли</h2>
+      <div className="grid grid-cols-[repeat(auto-fit,_minmax(320px,_1fr))] gap-8">
+        {renderedPlays}
+      </div>
+    </section>
   );
 };
 
 export default Plays;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const plays = await getAllDocumentsFromCollection('plays', 'sortId', 10);
+
+  return {
+    props: { plays },
+  };
+};

@@ -1,18 +1,18 @@
-import React from "react";
-//Redux
-import { useSelector } from "react-redux";
-import { selectAllActors } from "../reducers/dataSlice";
+import React from 'react';
 //Components
-import Actor from "./Actor";
+import Actor from './Actor';
 // Swiper
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation, FreeMode } from "swiper";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation, FreeMode } from 'swiper';
+import { ActorType } from '../types/categories';
 
-export const ActorList = () => {
-  const actors = useSelector(selectAllActors);
+interface Props {
+  actors: ActorType[];
+}
 
+export const ActorList = ({ actors }: Props) => {
   return (
     <Swiper
       navigation={true}

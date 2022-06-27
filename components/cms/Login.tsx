@@ -7,7 +7,6 @@ import { signInWithEmailAndPassword, User, AuthError } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 
 interface LoginProps {
-  // handleLogin: (auth: Auth, email: string, password: string) => void;
   setAdmin: React.Dispatch<React.SetStateAction<User | undefined>>;
 }
 

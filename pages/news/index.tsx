@@ -1,26 +1,35 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectAllNews } from '../../reducers/dataSlice';
-import BlogCard from '../../components/BlogCard';
+import { GetServerSideProps } from 'next';
+import React from 'react';
+import { getAllDocumentsFromCollection } from '../../components/firebase';
+import NewsPost from '../../components/NewsPost';
+import { NewsPostType } from '../../types/categories';
 
-const News = () => {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
-    }
-  }, []);
-  const news = useSelector(selectAllNews);
+interface Props {
+  news: NewsPostType[];
+}
+
+const News = ({ news }: Props) => {
   const renderedNews = news.map((post) => (
-    <BlogCard post={post} key={post.id} />
+    <NewsPost post={post} key={post.id} />
   ));
   return (
     <main className="news">
       <section>
-        <h2>Новости</h2>
-        <div className="news_page_wrapper">{renderedNews}</div>
+        <h2 className="text-3xl font-bold leading-8 mb-8">Новости</h2>
+        <div className="grid grid-cols-[repeat(auto-fit,_minmax(286px,_1fr))] gap-8">
+          {renderedNews}
+        </div>
       </section>
     </main>
   );
 };
 
 export default News;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const news = await getAllDocumentsFromCollection('news', 'published', 999);
+
+  return {
+    props: { news },
+  };
+};

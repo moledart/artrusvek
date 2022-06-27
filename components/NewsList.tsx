@@ -1,18 +1,18 @@
 import React from 'react';
-//Components
-import Play from './Play';
+
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation, FreeMode } from 'swiper';
-import { PlayType } from '../types/categories';
+import { NewsPostType } from '../types/categories';
+import NewsPost from './NewsPost';
 
 interface Props {
-  plays: PlayType[];
+  news: NewsPostType[];
 }
 
-export const PlayList = ({ plays }: Props) => {
+export const NewsList = ({ news }: Props) => {
   return (
     <Swiper
       navigation={true}
@@ -30,7 +30,7 @@ export const PlayList = ({ plays }: Props) => {
           spaceBetween: 32,
         },
         1024: {
-          slidesPerView: 3,
+          slidesPerView: 4,
           spaceBetween: 24,
         },
       }}
@@ -38,9 +38,9 @@ export const PlayList = ({ plays }: Props) => {
       freeMode={true}
       modules={[Navigation, FreeMode]}
     >
-      {plays.map((play) => (
-        <SwiperSlide key={play.id}>
-          <Play play={play} />
+      {news.map((post) => (
+        <SwiperSlide key={post.id}>
+          <NewsPost post={post} />
         </SwiperSlide>
       ))}
     </Swiper>

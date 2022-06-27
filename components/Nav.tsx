@@ -27,9 +27,9 @@ const Nav = () => {
 
   return (
     <header
-      className={`px-5 py-4 ${
+      className={`px-5 py-6 ${
         isVisible &&
-        'h-screen w-full overflow-hidden absolute left-0 top-0 z-10 bg-night lg:relative'
+        'h-screen w-full overflow-hidden fixed left-0 top-0 z-10 bg-night lg:relative'
       }`}
     >
       <nav className="flex flex-col h-full items-stretch lg:flex-row lg:justify-between leading-none">

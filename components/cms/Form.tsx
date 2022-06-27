@@ -31,7 +31,7 @@ const Form = () => {
     .transform(newsTitle, '-')
     .toLowerCase();
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -39,7 +39,7 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const docRef = await addDoc(collection(db, 'news'), {
       id: uuidv4(),
@@ -47,7 +47,8 @@ const Form = () => {
       slug: generatedSlug,
       tag: values.tag.toLowerCase(),
       link: values.link,
-      date: serverTimestamp(),
+      createdAt: serverTimestamp(),
+      postDate: values.date,
     });
 
     const imageRef = ref(storage, `image/news/${generatedSlug}/thumbnail`);

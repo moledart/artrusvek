@@ -2,17 +2,27 @@ import React, { useState, useEffect } from 'react';
 //Firebase
 import { auth } from '../../firebase-config';
 import { Auth, onAuthStateChanged, User } from 'firebase/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { PlusIcon } from '@heroicons/react/solid';
+import {
+  collection,
+  doc,
+  DocumentData,
+  onSnapshot,
+  QueryDocumentSnapshot,
+} from 'firebase/firestore';
+import { db } from '../../firebase-config';
 //Components
 import Login from '../../components/cms/Login';
 import Plate from '../../components/cms/Plate';
 import Form from '../../components/cms/Form';
+import { PlusIcon } from '@heroicons/react/solid';
+import { NewsPost } from '../../types/categories';
 
 const Admin = () => {
   //User and logout
   const [admin, setAdmin] = useState<User>();
   const [category, setCategory] = useState('plays');
+  const [elements, setElements] = useState([]);
+  const [currentElement, setCurrentElement] = useState({});
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -25,6 +35,26 @@ const Admin = () => {
   const handleLogout = () => {
     auth.signOut();
   };
+
+  // Getting data from firestore
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, category),
+      (snapshot) => {
+        const data: any = [];
+        snapshot.forEach((doc) => {
+          data.push(doc.data());
+        });
+        setElements(data);
+      },
+      (error) => {
+        console.log(error.message);
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, [db, category]);
 
   if (!admin) return <Login setAdmin={setAdmin} />;
 
@@ -76,8 +106,14 @@ const Admin = () => {
             </button>
           </div>
           <ul>
-            <Plate active />
-            <Plate />
+            {elements.map((el: NewsPost) => (
+              <Plate
+                key={el.id}
+                el={el}
+                currentElement={currentElement}
+                setCurrentElement={setCurrentElement}
+              />
+            ))}
           </ul>
         </div>
         <div className="panel">
