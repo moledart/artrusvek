@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 //Components
 import SocialLinks from '../../components/SocialLinks';
 import {
@@ -10,7 +10,6 @@ import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 interface Props {
   actor: ActorType;

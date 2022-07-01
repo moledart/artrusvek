@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { auth } from '../../firebase-config';
-import { selectUser } from '../../reducers/userSlice';
-import { login, logout } from '../../reducers/userSlice';
 import { signInWithEmailAndPassword, User, AuthError } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
 
 interface LoginProps {
   setAdmin: React.Dispatch<React.SetStateAction<User | undefined>>;
@@ -69,25 +65,6 @@ const Login = ({ setAdmin }: LoginProps) => {
       ></input>
       {errorMessage}
     </form>
-
-    // {/* <form action="" onSubmit={handleLogin}>
-    //   <h1>Войти</h1>
-    //   <input
-    //     type="email"
-    //     // required="true"
-    //     placeholder="Почта"
-    //     value={email}
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   />
-    //   <input
-    //     type="password"
-    //     // required="true"
-    //     placeholder="Пароль"
-    //     value={password}
-    //     onChange={(e) => setPassword(e.target.value)}
-    //   />
-    //   <input type="submit" className="button_main" value="Войти" />
-    // </form> */}
   );
 };
 

@@ -4,16 +4,9 @@ import { PlayList } from '../components/PlayList';
 import { ActorList } from '../components/ActorList';
 import { NewsList } from '../components/NewsList';
 
-import {
-  getDataFromFirebase,
-  getAllDocumentsFromCollection,
-} from '../components/firebase';
+import { getAllDocumentsFromCollection } from '../components/firebase';
 import { GetServerSideProps } from 'next';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase-config';
 import Section from '../components/Section';
-import NewsPost from '../components/NewsPost';
-
 import { ActorType, NewsPostType, PlayType } from '../types/categories';
 import Head from 'next/head';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import { NewsPost } from '../../types/categories';
+import { NewsPostType } from '../../types/categories';
 
 interface PlateProps {
-  el: NewsPost;
+  el: NewsPostType;
   currentElement: {};
   setCurrentElement: React.Dispatch<React.SetStateAction<{}>>;
 }

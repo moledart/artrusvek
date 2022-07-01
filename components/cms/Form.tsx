@@ -1,5 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React, { useState } from 'react';
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 import { v4 as uuidv4 } from 'uuid';
 import { PhotographIcon, XIcon } from '@heroicons/react/solid';

@@ -15,7 +15,7 @@ import Login from '../../components/cms/Login';
 import Plate from '../../components/cms/Plate';
 import Form from '../../components/cms/Form';
 import { PlusIcon } from '@heroicons/react/solid';
-import { NewsPost } from '../../types/categories';
+import { NewsPostType } from '../../types/categories';
 
 const Admin = () => {
   //User and logout
@@ -106,7 +106,7 @@ const Admin = () => {
             </button>
           </div>
           <ul>
-            {elements.map((el: NewsPost) => (
+            {elements.map((el: NewsPostType) => (
               <Plate
                 key={el.id}
                 el={el}
