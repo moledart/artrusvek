@@ -71,6 +71,42 @@
   .card-header {
     @apply text-lg leading-tight lg:group-hover:text-main basic-animation text-neutral-200;
   }
+
+  .param {
+    @apply block text-neutral-200 mt-8 leading-tight;
+  }
+
+  .param-text {
+    @apply text-neutral-400 mt-2 leading-snug;
+  }
+
+  .actor_group {
+    @apply inline-flex flex-col;
+  }
+
+  .group_name {
+    @apply flex items-center gap-4;
+  }
+
+  .category {
+    @apply text-main text-lg;
+  }
+
+  .actors_expand {
+    @apply flex flex-wrap gap-4 mt-4;
+  }
+
+  .line {
+    @apply h-[0.5px] w-full bg-main;
+  }
+
+  .actor {
+    @apply cursor-pointer;
+  }
+
+  .actors_expand .actor {
+    @apply w-[calc(50%_-_0.5rem)] md:w-[calc(100%/4_-_0.75rem)] lg:w-full lg:max-w-[190px];
+  }
 }
 
 .swiper {

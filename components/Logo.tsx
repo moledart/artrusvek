@@ -9,8 +9,8 @@ const Logo = () => {
       onClick={() => router.push('/')}
     >
       <span className="text-[32px] font-bold tracking-wider">ArtRusVek</span>
-      <div className="text-sm text-zinc-500 tracking-wide">
-        продюссерская компания
+      <div className="text-sm text-zinc-500 tracking-wider">
+        продюсерская компания
       </div>
     </div>
   );

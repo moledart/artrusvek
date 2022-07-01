@@ -5,17 +5,17 @@ import Image from 'next/image';
 
 interface Props {
   actor: ActorType;
-  roleVisible: boolean;
+  roleVisible?: boolean;
 }
 
-const Actor = ({ actor, roleVisible }: Props) => {
+const Actor = ({ actor, roleVisible = false }: Props) => {
   const { photo, name, role, slug } = actor;
   const router = useRouter();
 
   return (
     <article
       onClick={() => router.push(`/team/${slug}`)}
-      className="cursor-pointer group "
+      className="actor group"
     >
       <div className="overflow-hidden rounded-lg">
         <Image

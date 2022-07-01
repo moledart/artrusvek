@@ -16,7 +16,7 @@ const NewsPost = ({ post }: Props) => {
   });
 
   return (
-    <article className="flex flex-col snap-start shrink-0">
+    <article className="flex flex-col cursor-pointer group">
       <div className="rounded-lg overflow-hidden">
         <Image
           src={thumbnail}
@@ -25,6 +25,7 @@ const NewsPost = ({ post }: Props) => {
           objectFit="cover"
           width={16}
           height={9}
+          className="lg:group-hover:scale-105 basic-animation"
         />
       </div>
       <span className="text-main text-sm mt-4">{tag}</span>

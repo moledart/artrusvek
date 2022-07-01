@@ -1,71 +1,108 @@
 import React, { useEffect, useState } from 'react';
 //Components
 import SocialLinks from '../../components/SocialLinks';
-import { getDocumentFromCollection } from '../../components/firebase';
-import { ActorType } from '../../types/categories';
+import {
+  getDocumentFromCollection,
+  getDocumentsContainingSlug,
+} from '../../components/firebase';
+import { ActorType, PlayType } from '../../types/categories';
 import { GetServerSideProps } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 interface Props {
   actor: ActorType;
+  involvedInPlays: PlayType[];
 }
 
-const ActorDetail = ({ actor }: Props) => {
-  const { photo, name, role, birthday, education, playedIn, description } =
+const ActorDetail = ({ actor, involvedInPlays }: Props) => {
+  const { photo, name, role, birthday, education, description, socials } =
     actor;
-  // //Getting data from the store
-  // const actor = useSelector((state) => selectActorBySlug(state, pathId));
-  // const involvedPlays = useSelector((state) => {
-  //   const allPlays = selectAllPlays(state);
-  //   return allPlays.filter((play) => play.slug === actor.playedIn);
-  // });
-  // const canLoad = actor && involvedPlays;
-
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     window.scrollTo(0, 0);
-  //   }
-  // }, []);
 
   return (
     <>
-      <div className="actor_detail">
-        <div className="actor_bio">
-          <div className="photo">
-            <img src={photo} alt={name} loading="lazy" />
+      <Head>
+        <title>Продюсерская компания ArtRusVek</title>
+        <meta
+          name="description"
+          content='Добро пожаловать в продюсерский центр ArtRusVek. Спектакли "Идеальный свидетель", "Главная Роль", "Зигзаг Удачи", "Левша", "Колесо Фортуны".'
+        />
+
+        <meta property="og:url" content="https://www.artrusvek.ru/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Продюсерская компания ArtRusVek" />
+        <meta
+          property="og:description"
+          content='Добро пожаловать в продюсерский центр ArtRusVek. Спектакли "Идеальный свидетель", "Главная Роль", "Зигзаг Удачи", "Левша", "Колесо Фортуны".'
+        />
+        <meta
+          property="og:image"
+          content="https://firebasestorage.googleapis.com/v0/b/artrusvek.appspot.com/o/image%2Fplays%2Fglavnaya-rol%2Fthumbnail.jpg?alt=media&token=d3ab5c87-8ea1-4160-b96a-fb03a1e71b4d"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="artrusvek.ru" />
+        <meta property="twitter:url" content="https://www.artrusvek.ru/" />
+        <meta name="twitter:title" content="Продюсерская компания ArtRusVek" />
+        <meta
+          name="twitter:description"
+          content='Добро пожаловать в продюсерский центр ArtRusVek. Спектакли "Идеальный свидетель", "Главная Роль", "Зигзаг Удачи", "Левша", "Колесо Фортуны".'
+        />
+        <meta
+          name="twitter:image"
+          content="https://firebasestorage.googleapis.com/v0/b/artrusvek.appspot.com/o/image%2Fplays%2Fglavnaya-rol%2Fthumbnail.jpg?alt=media&token=d3ab5c87-8ea1-4160-b96a-fb03a1e71b4d"
+        />
+      </Head>
+      <div className="max-w-4xl lg:mx-auto py-8 lg:py-0">
+        <header className="flex gap-8 flex-col md:flex-row">
+          <div className="flex-1 md:w-[40%]">
+            <Image
+              src={photo}
+              alt={name}
+              layout="responsive"
+              width={5}
+              height={6}
+              objectFit="cover"
+            />
           </div>
-          <div className="info">
-            <h2>{name}</h2>
-            <span>{role}</span>
+          <div className="flex-1">
+            <h2 className="text-2xl lg:text-3xl text-neutral-200 font-bold leading-8">
+              {name}
+            </h2>
+            <span className="block text-base text-neutral-400">{role}</span>
             <span className="param">Дата рождения</span>
-            <p className="param_value">{birthday}</p>
+            <p className="param-text">{birthday}</p>
             <span className="param">Образование</span>
-            <p className="param_value">{education}</p>
-            {/* <SocialLinks actor={actor} />
-            {involvedPlays.length ? (
+            <p className="param-text">{education}</p>
+            <SocialLinks socials={socials} />
+            {involvedInPlays.length ? (
               <>
                 <span className="param">Спектакли</span>
-                <div className="plays_involved">
-                  {involvedPlays.map((play) => (
-                    <Link
-                      to={`/plays/${play.slug}`}
-                      className="play"
-                      key={play.id}
-                    >
-                      {play.name}
+                <div className="flex gap-2">
+                  {involvedInPlays.map((play) => (
+                    <Link href={`/plays/${play.slug}`} key={play.id}>
+                      <a className="uppercase flex items-center px-2 bg-zinc-700 rounded-sm hover:bg-mainDark basic-animation text-xs h-8 whitespace-nowrap mt-2">
+                        {play.name}
+                      </a>
                     </Link>
                   ))}
                 </div>
               </>
             ) : (
               ''
-            )} */}
+            )}
           </div>
-        </div>
+        </header>
         {description && (
           <>
             <span className="param">Описание</span>
             {/* <p>{description}</p> */}
-            <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            <div
+              dangerouslySetInnerHTML={{ __html: description }}
+              className="param-text"
+            ></div>
           </>
         )}
       </div>
@@ -78,10 +115,17 @@ export default ActorDetail;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const slug = context.query.slug;
   const actor = await getDocumentFromCollection('actors', slug);
+  const involvedInPlays = await getDocumentsContainingSlug(
+    'plays',
+    'actors',
+    slug,
+    'sortId'
+  );
 
   return {
     props: {
       actor,
+      involvedInPlays,
     },
   };
 };

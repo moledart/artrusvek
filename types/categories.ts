@@ -11,7 +11,7 @@ export interface NewsPostType {
   uid: string;
 }
 
-interface Socials {
+export interface Socials {
   fbLink: string;
   igLink: string;
   vkLink: string;

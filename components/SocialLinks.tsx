@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { Socials } from '../types/categories';
 
 export const Facebook = () => {
   return (
@@ -80,35 +81,56 @@ export const Website = () => {
   );
 };
 
-const SocialLinks = (actor) => {
-  const { fbLink, igLink, vkLink, link } = actor.actor;
-  const linksCheck = fbLink.length + igLink.length + vkLink.length + link.length;
+interface Props {
+  socials: Socials;
+}
+
+const SocialLinks = ({ socials }: Props) => {
+  const { fbLink, igLink, vkLink, link } = socials;
+  const linksCheck =
+    fbLink.length + igLink.length + vkLink.length + link.length;
 
   return (
     <>
-      {linksCheck ? <span className="param">Социальные сети</span> : null}
-      <div className="social_links">
-        {fbLink && (
-          <a href={fbLink} className="href">
-            <Facebook />
-          </a>
-        )}
-        {igLink && (
-          <a href={igLink} className="href">
-            <Instagram />
-          </a>
-        )}
-        {vkLink && (
-          <a href={vkLink} className="href">
-            <Vkontakte />
-          </a>
-        )}
-        {link && (
-          <a href={link} className="href">
-            <Website />
-          </a>
-        )}
-      </div>
+      {linksCheck ? (
+        <>
+          <span className="param">Социальные сети</span>
+          <div className="flex gap-2 mt-2">
+            {fbLink && (
+              <a
+                href={fbLink}
+                className="bg-zinc-700 hover:bg-mainDark basic-animation rounded-sm"
+              >
+                <Facebook />
+              </a>
+            )}
+            {igLink && (
+              <a
+                href={igLink}
+                className="bg-zinc-700 hover:bg-mainDark basic-animation rounded-sm"
+              >
+                <Instagram />
+              </a>
+            )}
+            {vkLink && (
+              <a
+                href={vkLink}
+                className="bg-zinc-700 hover:bg-mainDark basic-animation rounded-sm"
+              >
+                <Vkontakte />
+              </a>
+            )}
+            {link && (
+              <a
+                href={link}
+                className="bg-zinc-700 hover:bg-mainDark basic-animation rounded-sm"
+              >
+                <Website />
+              </a>
+            )}
+          </div>
+        </>
+      ) : null}
     </>
   );
 };

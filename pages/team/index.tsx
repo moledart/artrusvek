@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react';
-//Redux
-import { useSelector } from 'react-redux';
-//Components
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React from 'react';
 import Actor from '../../components/Actor';
-//Framer
-import { motion } from 'framer-motion';
-import { PageAnimation } from '../../components/PageAnimation';
-import { selectAllActors } from '../../reducers/dataSlice';
+import { getAllDocumentsFromCollection } from '../../components/firebase';
+import { ActorType } from '../../types/categories';
 
-const Actors = () => {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
-    }
-  }, []);
-  const actors = useSelector(selectAllActors);
+interface Props {
+  actors: ActorType[];
+}
+
+const Actors = ({ actors }: Props) => {
   const producers = actors.filter((actor) => actor.role === 'продюсер');
   const directors = actors.filter((actor) => actor.role === 'режиссер');
   const crew = actors.filter((actor) => actor.role === 'актер');
@@ -23,18 +18,45 @@ const Actors = () => {
   const arrangers = actors.filter((actor) => actor.role === 'аранжировщик');
 
   return (
-    <motion.main
-      variants={PageAnimation}
-      initial="hidden"
-      animate="show"
-      exit="exit"
-    >
-      <section className="team">
-        <h2>Творческая группа</h2>
-        <div className="wrapper">
+    <>
+      <Head>
+        <title>Продюсерская компания ArtRusVek</title>
+        <meta
+          name="description"
+          content='Добро пожаловать в продюсерский центр ArtRusVek. Спектакли "Идеальный свидетель", "Главная Роль", "Зигзаг Удачи", "Левша", "Колесо Фортуны".'
+        />
+
+        <meta property="og:url" content="https://www.artrusvek.ru/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Продюсерская компания ArtRusVek" />
+        <meta
+          property="og:description"
+          content='Добро пожаловать в продюсерский центр ArtRusVek. Спектакли "Идеальный свидетель", "Главная Роль", "Зигзаг Удачи", "Левша", "Колесо Фортуны".'
+        />
+        <meta
+          property="og:image"
+          content="https://firebasestorage.googleapis.com/v0/b/artrusvek.appspot.com/o/image%2Fplays%2Fglavnaya-rol%2Fthumbnail.jpg?alt=media&token=d3ab5c87-8ea1-4160-b96a-fb03a1e71b4d"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="artrusvek.ru" />
+        <meta property="twitter:url" content="https://www.artrusvek.ru/" />
+        <meta name="twitter:title" content="Продюсерская компания ArtRusVek" />
+        <meta
+          name="twitter:description"
+          content='Добро пожаловать в продюсерский центр ArtRusVek. Спектакли "Идеальный свидетель", "Главная Роль", "Зигзаг Удачи", "Левша", "Колесо Фортуны".'
+        />
+        <meta
+          name="twitter:image"
+          content="https://firebasestorage.googleapis.com/v0/b/artrusvek.appspot.com/o/image%2Fplays%2Fglavnaya-rol%2Fthumbnail.jpg?alt=media&token=d3ab5c87-8ea1-4160-b96a-fb03a1e71b4d"
+        />
+      </Head>
+      <section>
+        <h2 className="text-3xl font-bold leading-8 mb-8">Творческая группа</h2>
+        <div className="flex flex-wrap gap-x-12 gap-y-12">
           <div className="actor_group">
             <div className="group_name">
-              <span>Продюсеры</span>
+              <span className="category">Продюсеры</span>
               <div className="line"></div>
             </div>
             <div className="actors_expand">
@@ -46,7 +68,7 @@ const Actors = () => {
           </div>
           <div className="actor_group">
             <div className="group_name">
-              <span>Режиссеры</span>
+              <span className="category">Режиссеры</span>
               <div className="line"></div>
             </div>
             <div className="actors_expand">
@@ -58,7 +80,7 @@ const Actors = () => {
           </div>
           <div className="actor_group">
             <div className="group_name">
-              <span>Авторы</span>
+              <span className="category">Авторы</span>
               <div className="line"></div>
             </div>
             <div className="actors_expand">
@@ -68,7 +90,7 @@ const Actors = () => {
           </div>
           <div className="actor_group">
             <div className="group_name">
-              <span>Композиторы</span>
+              <span className="category">Композиторы</span>
               <div className="line"></div>
             </div>
             <div className="actors_expand">
@@ -80,7 +102,7 @@ const Actors = () => {
           </div>
           <div className="actor_group">
             <div className="group_name">
-              <span>Аранжировщики</span>
+              <span className="category">Аранжировщики</span>
               <div className="line"></div>
             </div>
             <div className="actors_expand">
@@ -93,7 +115,7 @@ const Actors = () => {
 
           <div className="actor_group">
             <div className="group_name">
-              <span>Актеры</span>
+              <span className="category">Актеры</span>
               <div className="line"></div>
             </div>
             <div className="actors_expand">
@@ -103,8 +125,18 @@ const Actors = () => {
           </div>
         </div>
       </section>
-    </motion.main>
+    </>
   );
 };
 
 export default Actors;
+
+export const getServerSideProps = async () => {
+  const actors = await getAllDocumentsFromCollection('actors', 'sortId', 999);
+
+  return {
+    props: {
+      actors,
+    },
+  };
+};
