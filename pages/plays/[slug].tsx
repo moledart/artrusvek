@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 //Components
 import { PhotoModal } from '../../components/PhotoModal';
 // Swiper
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation, FreeMode } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import { ActorList } from '../../components/ActorList';
 import {
   getDocumentFromCollection,
   getDocumentsContainingSlug,
 } from '../../components/firebase';
 import { ActorType, PlayType } from '../../types/categories';
-import Image from 'next/image';
-import { ActorList } from '../../components/ActorList';
-import Head from 'next/head';
 
 interface Props {
   play: PlayType;
@@ -214,8 +214,16 @@ const PlayDetail = ({ play, cast }: Props) => {
 
 export default PlayDetail;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.query.slug;
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+  query,
+}) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=300, stale-while-revalidate=59'
+  );
+  const slug = query.slug;
   const play = await getDocumentFromCollection('plays', slug);
   const cast = await getDocumentsContainingSlug(
     'actors',

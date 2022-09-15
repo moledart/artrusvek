@@ -1,7 +1,6 @@
-import React from 'react';
-import { ActorType } from '../types/categories';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { ActorType } from '../types/categories';
 
 interface Props {
   actor: ActorType;
@@ -9,7 +8,7 @@ interface Props {
 }
 
 const Actor = ({ actor, roleVisible = false }: Props) => {
-  const { photo, name, role, slug } = actor;
+  const { thumbnail, name, role, slug } = actor;
   const router = useRouter();
 
   return (
@@ -19,7 +18,7 @@ const Actor = ({ actor, roleVisible = false }: Props) => {
     >
       <div className="overflow-hidden rounded-lg">
         <Image
-          src={photo || 'https://picsum.photos/200/300'}
+          src={thumbnail || 'https://picsum.photos/200/300'}
           alt={name}
           layout="responsive"
           objectFit="cover"

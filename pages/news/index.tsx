@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import React from 'react';
 import { getAllDocumentsFromCollection } from '../../components/firebase';
 import NewsPost from '../../components/NewsPost';
 import { NewsPostType } from '../../types/categories';
@@ -59,7 +58,11 @@ const News = ({ news }: Props) => {
 
 export default News;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=300, stale-while-revalidate=59'
+  );
   const news = await getAllDocumentsFromCollection('news', 'published', 999);
 
   return {

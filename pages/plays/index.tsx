@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import React from 'react';
 import { getAllDocumentsFromCollection } from '../../components/firebase';
 
 //Components
@@ -59,7 +58,11 @@ const Plays = ({ plays }: Props) => {
 
 export default Plays;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=300, stale-while-revalidate=59'
+  );
   const plays = await getAllDocumentsFromCollection('plays', 'sortId', 10);
 
   return {

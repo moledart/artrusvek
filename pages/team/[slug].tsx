@@ -1,15 +1,14 @@
-import React from 'react';
 //Components
-import SocialLinks from '../../components/SocialLinks';
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   getDocumentFromCollection,
   getDocumentsContainingSlug,
 } from '../../components/firebase';
+import SocialLinks from '../../components/SocialLinks';
 import { ActorType, PlayType } from '../../types/categories';
-import { GetServerSideProps } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import Head from 'next/head';
 
 interface Props {
   actor: ActorType;
@@ -17,7 +16,7 @@ interface Props {
 }
 
 const ActorDetail = ({ actor, involvedInPlays }: Props) => {
-  const { photo, name, role, birthday, education, description, socials } =
+  const { thumbnail, name, role, birthday, education, description, socials } =
     actor;
 
   return (
@@ -58,7 +57,7 @@ const ActorDetail = ({ actor, involvedInPlays }: Props) => {
         <header className="flex gap-8 flex-col md:flex-row">
           <div className="flex-1 md:w-[40%]">
             <Image
-              src={photo}
+              src={thumbnail}
               alt={name}
               layout="responsive"
               width={5}
@@ -111,8 +110,17 @@ const ActorDetail = ({ actor, involvedInPlays }: Props) => {
 
 export default ActorDetail;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.query.slug;
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+  query,
+}) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=300, stale-while-revalidate=59'
+  );
+
+  const slug = query.slug;
   const actor = await getDocumentFromCollection('actors', slug);
   const involvedInPlays = await getDocumentsContainingSlug(
     'plays',

@@ -1,5 +1,5 @@
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import React from 'react';
 import Actor from '../../components/Actor';
 import { getAllDocumentsFromCollection } from '../../components/firebase';
 import { ActorType } from '../../types/categories';
@@ -130,7 +130,11 @@ const Actors = ({ actors }: Props) => {
 
 export default Actors;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=300, stale-while-revalidate=59'
+  );
   const actors = await getAllDocumentsFromCollection('actors', 'sortId', 999);
 
   return {
