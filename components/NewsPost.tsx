@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import { NewsPostType } from '../types/categories';
 
@@ -9,11 +8,13 @@ interface Props {
 const NewsPost = ({ post }: Props) => {
   const { name, thumbnail, published, source, tag } = post;
 
-  const date = new Date(published).toLocaleDateString('ru-RU', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  let date;
+  if (published)
+    date = new Date(published).toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
 
   return (
     <article className="flex flex-col cursor-pointer group">
