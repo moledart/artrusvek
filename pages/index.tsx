@@ -1,14 +1,13 @@
-import React from 'react';
 //Components
-import { PlayList } from '../components/PlayList';
 import { ActorList } from '../components/ActorList';
 import { NewsList } from '../components/NewsList';
+import { PlayList } from '../components/PlayList';
 
-import { getAllDocumentsFromCollection } from '../components/firebase';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import { getAllDocumentsFromCollection } from '../components/firebase';
 import Section from '../components/Section';
 import { ActorType, NewsPostType, PlayType } from '../types/categories';
-import Head from 'next/head';
 
 interface Props {
   actors: ActorType[];

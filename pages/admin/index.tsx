@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 //Firebase
-import { auth } from '../../firebase-config';
+import { auth, storage } from '../../firebase-config';
 import { Auth, onAuthStateChanged, User } from 'firebase/auth';
 import {
   collection,
@@ -13,28 +13,24 @@ import { db } from '../../firebase-config';
 //Components
 import Login from '../../components/cms/Login';
 import Plate from '../../components/cms/Plate';
-import Form from '../../components/cms/Form';
+import FormContainer from '../../components/cms/FormContainer';
 import { PlusIcon } from '@heroicons/react/solid';
-import { NewsPostType } from '../../types/categories';
+import {
+  TCategory,
+  TCategoryElement,
+  TCategoryElements,
+} from '../../types/categories';
 
 const Admin = () => {
   //User and logout
   const [admin, setAdmin] = useState<User>();
-  const [category, setCategory] = useState('plays');
-  const [elements, setElements] = useState([]);
-  const [currentElement, setCurrentElement] = useState({});
+  const [category, setCategory] = useState<TCategory>('news');
+  const [elements, setElements] = useState<TCategoryElements>([]);
+  const [currentElement, setCurrentElement] = useState<TCategoryElement>(elements[0]);
+  const [blankForm, setBlankForm] = useState(false);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setAdmin(user);
-    } else {
-      setAdmin(undefined);
-    }
-  });
-
-  const handleLogout = () => {
-    auth.signOut();
-  };
+  onAuthStateChanged(auth, (user) => setAdmin(user ? user : undefined));
+  const handleLogout = () => auth.signOut();
 
   // Getting data from firestore
   useEffect(() => {
@@ -46,6 +42,7 @@ const Admin = () => {
           data.push(doc.data());
         });
         setElements(data);
+        setCurrentElement(data[0]);
       },
       (error) => {
         console.log(error.message);
@@ -54,7 +51,7 @@ const Admin = () => {
     return () => {
       unsubscribe();
     };
-  }, [db, category]);
+  }, [db, category, storage]);
 
   if (!admin) return <Login setAdmin={setAdmin} />;
 
@@ -100,25 +97,33 @@ const Admin = () => {
             <button
               type="button"
               className="bg-zinc-700 rounded-sm ml-4 hover:bg-zinc-600 basic-animation text-sm flex items-center gap-1 px-4"
+              onClick={() => setBlankForm(true)}
             >
               <PlusIcon className="w-5" />
               Добавить
             </button>
           </div>
           <ul>
-            {elements.map((el: NewsPostType) => (
+            {elements.map((el: TCategoryElement) => (
               <Plate
                 key={el.id}
                 el={el}
                 currentElement={currentElement}
                 setCurrentElement={setCurrentElement}
+                setBlankForm={setBlankForm}
               />
             ))}
           </ul>
         </div>
         <div className="panel">
           <h2>Содержание элемента</h2>
-          <Form />
+          <FormContainer 
+            category={category} 
+            elements={elements}
+            currentElement={currentElement} 
+            blankForm={blankForm} 
+            setCurrentElement={setCurrentElement}
+          />
         </div>
       </div>
     </section>

@@ -1,14 +1,19 @@
+export type TCategory = 'news' | 'plays' | 'actors';
+export type TCategoryElement = NewsPostType | ActorType | PlayType;
+export type TCategoryElements = NewsPostType[] | ActorType[] | PlayType[];
+
 export interface NewsPostType {
-  briefInfo: string;
+  briefInfo?: string;
   date: string;
   id: string;
   name: string;
-  published: Date;
+  published?: string;
   slug: string;
   source: string;
   tag: string;
   thumbnail: string;
   uid: string;
+  type?: 'news';
 }
 
 export interface Socials {
@@ -19,7 +24,7 @@ export interface Socials {
 }
 
 export interface ActorType {
-  photo: string;
+  thumbnail: string;
   birthday: string;
   description: string;
   education: string;
@@ -31,6 +36,7 @@ export interface ActorType {
   sortId: number;
   uid: string;
   socials: Socials;
+  type?: 'actors';
 }
 
 export interface PlayType {
@@ -49,4 +55,5 @@ export interface PlayType {
   thumbnail: string;
   uid: string;
   youtubeLink: string;
+  type?: 'plays';
 }
