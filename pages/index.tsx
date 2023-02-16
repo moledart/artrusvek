@@ -1,13 +1,13 @@
 //Components
-import { ActorList } from '../components/ActorList';
-import { NewsList } from '../components/NewsList';
-import { PlayList } from '../components/PlayList';
+import { ActorList } from "../components/ActorList";
+import { NewsList } from "../components/NewsList";
+import { PlayList } from "../components/PlayList";
 
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import { getAllDocumentsFromCollection } from '../components/firebase';
-import Section from '../components/Section';
-import { ActorType, NewsPostType, PlayType } from '../types/categories';
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import { getAllDocumentsFromCollection } from "../components/firebase";
+import Section from "../components/Section";
+import { ActorType, NewsPostType, PlayType } from "../types/categories";
 
 interface Props {
   actors: ActorType[];
@@ -65,12 +65,19 @@ const Home = ({ actors, news, plays }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=300, stale-while-revalidate=59'
+    "Cache-Control",
+    "public, s-maxage=300, stale-while-revalidate=59"
   );
-  const news = await getAllDocumentsFromCollection('news', 'published', 10);
-  const actors = await getAllDocumentsFromCollection('actors', 'sortId', 10);
-  const plays = await getAllDocumentsFromCollection('plays', 'sortId', 10);
+  const newsResponse: NewsPostType[] = await getAllDocumentsFromCollection(
+    "news",
+    "published",
+    10
+  );
+  const news = newsResponse.sort(
+    (a, b) => +new Date(b.published) - +new Date(a.published)
+  );
+  const actors = await getAllDocumentsFromCollection("actors", "sortId", 10);
+  const plays = await getAllDocumentsFromCollection("plays", "sortId", 10);
   return { props: { actors, news, plays } };
 };
 

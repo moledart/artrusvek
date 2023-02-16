@@ -1,8 +1,8 @@
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import { getAllDocumentsFromCollection } from '../../components/firebase';
-import NewsPost from '../../components/NewsPost';
-import { NewsPostType } from '../../types/categories';
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import { getAllDocumentsFromCollection } from "../../components/firebase";
+import NewsPost from "../../components/NewsPost";
+import { NewsPostType } from "../../types/categories";
 
 interface Props {
   news: NewsPostType[];
@@ -60,11 +60,17 @@ export default News;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=300, stale-while-revalidate=59'
+    "Cache-Control",
+    "public, s-maxage=300, stale-while-revalidate=59"
   );
-  const news = await getAllDocumentsFromCollection('news', 'published', 999);
-
+  const data: NewsPostType[] = await getAllDocumentsFromCollection(
+    "news",
+    "published",
+    999
+  );
+  const news = data.sort(
+    (a, b) => +new Date(b.published) - +new Date(a.published)
+  );
   return {
     props: { news },
   };
