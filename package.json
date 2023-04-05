@@ -30,7 +30,9 @@
     "start": "next start"
   },
   "eslintConfig": {
-    "extends": []
+    "extends": [
+      "react-app"
+    ]
   },
   "browserslist": {
     "production": [
