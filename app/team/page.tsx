@@ -1,5 +1,5 @@
 import Actor from "../../components/Actor";
-import { getAllDocumentsFromCollection } from "../../components/firebase";
+import { getAllDocumentsFromCollection } from "../../functions/firebase";
 
 export default async function Page() {
   const actors = await getAllDocumentsFromCollection("actors", "sortId", 999);

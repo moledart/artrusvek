@@ -1,4 +1,4 @@
-import { getAllDocumentsFromCollection } from "../../components/firebase";
+import { getAllDocumentsFromCollection } from "../../functions/firebase";
 import Play from "../../components/Play";
 import { PlayType } from "../../types/categories";
 

@@ -1,5 +1,5 @@
 import { ActorList } from "../components/ActorList";
-import { getAllDocumentsFromCollection } from "../components/firebase";
+import { getAllDocumentsFromCollection } from "../functions/firebase";
 import { NewsList } from "../components/NewsList";
 import { PlayList } from "../components/PlayList";
 import Section from "../components/Section";

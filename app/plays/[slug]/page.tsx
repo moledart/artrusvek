@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Actor from "../../../components/Actor";
-import { ActorList } from "../../../components/ActorList";
 import {
   getDocumentFromCollection,
   getDocumentsContainingSlug,
-} from "../../../components/firebase";
+} from "../../../functions/firebase";
 import { Slider } from "../../../components/Slider";
 
 const photoOptions = {

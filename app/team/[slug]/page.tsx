@@ -3,7 +3,7 @@ import Link from "next/link";
 import {
   getDocumentFromCollection,
   getDocumentsContainingSlug,
-} from "../../../components/firebase";
+} from "../../../functions/firebase";
 import SocialLinks from "../../../components/SocialLinks";
 
 export default async function Page({ params }: { params: { slug: string } }) {
