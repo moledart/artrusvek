@@ -30,9 +30,7 @@
     "start": "next start"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app/jest"
-    ]
+    "extends": []
   },
   "browserslist": {
     "production": [
@@ -48,7 +46,6 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",
-    "@tailwindcss/line-clamp": "^0.4.0",
     "@types/node": "18.15.11",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
