@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
   images: {
     domains: [
-      'firebasestorage.googleapis.com',
-      'uploads-ssl.webflow.com',
-      'picsum.photos',
+      "firebasestorage.googleapis.com",
+      "uploads-ssl.webflow.com",
+      "picsum.photos",
+      "media.graphassets.com",
     ],
   },
 };
+
+module.exports = nextConfig;

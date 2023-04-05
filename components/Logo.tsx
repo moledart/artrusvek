@@ -1,18 +1,13 @@
-import { useRouter } from 'next/router';
-import React from 'react';
+import Link from "next/link";
 
 const Logo = () => {
-  const router = useRouter();
   return (
-    <div
-      className="flex flex-col leading-none cursor-pointer"
-      onClick={() => router.push('/')}
-    >
+    <Link className="flex flex-col leading-none cursor-pointer" href={"/"}>
       <span className="text-[32px] font-bold tracking-wider">ArtRusVek</span>
       <div className="text-sm text-zinc-500 tracking-wider">
         продюсерская компания
       </div>
-    </div>
+    </Link>
   );
 };
 

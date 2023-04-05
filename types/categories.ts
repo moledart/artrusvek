@@ -3,17 +3,14 @@ export type TCategoryElement = NewsPostType | ActorType | PlayType;
 export type TCategoryElements = NewsPostType[] | ActorType[] | PlayType[];
 
 export interface NewsPostType {
-  briefInfo?: string;
   date: string;
   id: string;
-  name: string;
-  published: string;
-  slug: string;
-  source: string;
+  title: string;
+  link: string;
   tag: string;
-  thumbnail: string;
-  uid: string;
-  type?: "news";
+  thumbnail: {
+    url: string;
+  };
 }
 
 export interface Socials {

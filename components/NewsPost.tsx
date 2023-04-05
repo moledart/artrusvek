@@ -7,33 +7,29 @@ interface Props {
 }
 
 const NewsPost = ({ post }: Props) => {
-  const { name, thumbnail, published, source, tag } = post;
-
-  let date;
-  if (published)
-    date = new Date(published).toLocaleDateString("ru-RU", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const { title, thumbnail, date, link, tag } = post;
 
   return (
-    <Link href={source}>
+    <Link href={link}>
       <article className="flex flex-col cursor-pointer group">
-        <div className="rounded-lg overflow-hidden">
+        <div className="rounded-lg overflow-hidden relative h-40">
           <Image
-            src={thumbnail}
-            alt={name}
-            layout="responsive"
-            objectFit="cover"
-            width={16}
-            height={9}
-            className="lg:group-hover:scale-105 basic-animation"
+            src={thumbnail.url || "https://picsum.photos/200/300"}
+            alt={title}
+            fill={true}
+            quality={100}
+            className=" lg:group-hover:scale-105 basic-animation object-cover object-top"
           />
         </div>
         <span className="text-main text-sm mt-4">{tag}</span>
-        <h3 className="card-header mb-2">{name}</h3>
-        <span className="text-sm text-neutral-400">{date}</span>
+        <h3 className="card-header mb-2">{title}</h3>
+        <span className="text-sm text-neutral-400">
+          {new Date(date).toLocaleDateString("ru-RU", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </span>
       </article>
     </Link>
   );

@@ -1,48 +1,21 @@
-import React from 'react';
-
-// Swiper
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation, FreeMode } from 'swiper';
-import { NewsPostType } from '../types/categories';
-import NewsPost from './NewsPost';
+import { NewsPostType } from "../types/categories";
+import { Slider } from "./Slider";
+import NewsPost from "./NewsPost";
 
 interface Props {
   news: NewsPostType[];
 }
 
+const options = {
+  size: "25%",
+  breakpoints: [
+    { maxWidth: "md", slideSize: "30%" },
+    { maxWidth: "sm", slideSize: "90%" },
+  ],
+};
+
 export const NewsList = ({ news }: Props) => {
-  return (
-    <Swiper
-      navigation={true}
-      breakpoints={{
-        300: {
-          slidesPerView: 1.1,
-          spaceBetween: 20,
-        },
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 32,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 24,
-        },
-      }}
-      className="mySwiper"
-      freeMode={true}
-      modules={[Navigation, FreeMode]}
-    >
-      {news.map((post) => (
-        <SwiperSlide key={post.id}>
-          <NewsPost post={post} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  );
+  const slides = news.map((post) => <NewsPost post={post} />);
+
+  return <Slider slides={slides} options={options} />;
 };

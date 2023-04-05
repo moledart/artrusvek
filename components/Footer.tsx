@@ -1,20 +1,18 @@
-import React from 'react';
-import Link from 'next/link';
+import Link from "next/link";
 //Icons
-import { PhoneIcon, MailIcon } from '@heroicons/react/solid';
+import { PhoneIcon, MailIcon } from "@heroicons/react/solid";
 
-import Logo from './Logo';
-import { links } from './util';
+import Logo from "./Logo";
+import { links } from "./util";
 
 const Footer = () => {
   const navLinks = links.map(({ path, text }, index) => (
     <li key={index}>
-      <Link href={path}>
-        <a
-          className={`flex w-full rounded-sm hover:text-main basic-animation text-zinc-500 mb-1`}
-        >
-          {text}
-        </a>
+      <Link
+        href={path}
+        className="flex w-full rounded-sm hover:text-main basic-animation text-zinc-500 mb-1"
+      >
+        {text}
       </Link>
     </li>
   ));

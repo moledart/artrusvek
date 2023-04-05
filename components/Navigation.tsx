@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Logo from './Logo';
-import { links } from './util';
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Logo from "./Logo";
+import { links } from "./util";
 
-const Nav = () => {
+const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const router = useRouter();
+  const pathname = usePathname();
 
   const navLinks = links.map(({ path, text }, index) => (
     <li key={index} className="inline-flex">
-      <Link href={path}>
-        <a
-          className={`flex items-center w-full justify-end py-4 px-8 rounded-sm hover:bg-dawn hover:text-main basic-animation lg:w-auto ${
-            router.pathname == path ? 'active' : ''
-          }`}
-          onClick={() => setIsVisible(false)}
-        >
-          {text}
-        </a>
+      <Link
+        href={path}
+        className={`flex items-center w-full justify-end py-4 px-8 rounded-sm hover:bg-dawn hover:text-main basic-animation lg:w-auto ${
+          pathname == path ? "active" : ""
+        }`}
+        onClick={() => setIsVisible(false)}
+      >
+        {text}
       </Link>
     </li>
   ));
 
-  const buttonText = isVisible ? 'Закрыть' : 'Меню';
+  const buttonText = isVisible ? "Закрыть" : "Меню";
 
   return (
     <header
       className={`px-5 py-6 ${
         isVisible &&
-        'h-screen w-full overflow-hidden fixed left-0 top-0 z-10 bg-night lg:relative'
+        "h-screen w-full overflow-hidden fixed left-0 top-0 z-10 bg-night lg:relative"
       }`}
     >
       <nav className="flex flex-col h-full items-stretch lg:flex-row lg:justify-between leading-none">
@@ -44,7 +44,7 @@ const Nav = () => {
         </div>
         <ul
           className={`${
-            isVisible ? 'flex' : 'hidden'
+            isVisible ? "flex" : "hidden"
           } flex-col h-full justify-center lg:flex lg:flex-row lg:items-stretch lg:justify-start lg:h-auto`}
         >
           {navLinks}
@@ -54,4 +54,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Navigation;

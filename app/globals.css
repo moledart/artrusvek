@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,20 +6,20 @@
 
 @layer base {
   html {
-    font-family: 'Rubik', sans-serif;
+    font-family: "Rubik", sans-serif;
   }
   body {
     @apply text-neutral-300 bg-night;
   }
   .main {
   }
-  input[type='text'],
-  input[type='password'],
-  input[type='email'],
-  input[type='date'] {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="date"] {
     @apply mt-1 block w-full rounded-md bg-zinc-800 border-transparent focus:border-zinc-800 focus:bg-zinc-700 focus:ring-0;
   }
-  input[type='file'] {
+  input[type="file"] {
     @apply hidden;
   }
   ::-webkit-calendar-picker-indicator {
@@ -109,47 +109,26 @@
   }
 }
 
-.swiper {
-  width: 100%;
-  height: 100%;
-  position: static !important;
-  overflow: visible !important;
+.mantine-Carousel-controls {
+  position: absolute;
+  top: -64px;
+  right: 0;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0;
 }
-@media screen and (min-width: 767px) {
-  .swiper {
-    overflow: hidden !important;
+
+@media (max-width: 30em) {
+  .mantine-Carousel-controls {
+    display: none;
   }
 }
-.swiper .swiper-wrapper {
-  overflow: visible;
-}
-.swiper .swiper-button-prev,
-.swiper .swiper-button-next {
-  display: none;
-  position: absolute;
-  top: 32px;
-  z-index: 2;
+
+.mantine-Carousel-control {
   background-color: #3f3f46;
   border-radius: 8px;
-  padding: 0 1rem;
-  margin: 0 !important;
-  height: 32px;
-}
-.swiper .swiper-button-prev::after,
-.swiper .swiper-button-next::after {
-  font-size: 12px;
+  padding: 0.5rem;
+  border-color: transparent;
   color: #fff;
-}
-@media screen and (min-width: 768px) {
-  .swiper .swiper-button-prev,
-  .swiper .swiper-button-next {
-    display: flex;
-  }
-}
-.swiper .swiper-button-prev {
-  right: 40px;
-  left: auto;
-}
-.swiper .swiper-button-next {
-  right: 0;
+  font-size: 16px;
 }
