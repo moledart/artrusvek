@@ -34,13 +34,6 @@ const Footer = () => {
             координатам
           </p>
           <a
-            href="tel:+79263027135"
-            className="flex hover:text-main mb-2 basic-animation"
-          >
-            <PhoneIcon className="w-7 h-7 mr-2" />
-            <p className="text-xl">+7 (926) 302-71-35</p>
-          </a>
-          <a
             href="mailto:lazarevarusvek@mail.ru"
             className="flex hover:text-main basic-animation"
           >
