@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ActorType } from "../types/categories";
+import { TTeamMember } from "../data/actors";
 
 interface Props {
-  actor: ActorType;
+  actor: TTeamMember;
   roleVisible?: boolean;
 }
 

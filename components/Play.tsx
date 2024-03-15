@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PlayType } from "../types/categories";
+import { TPlay } from "../data/plays";
 
 interface Props {
-  play: PlayType;
+  play: TPlay;
 }
 
 const Play = ({ play }: Props) => {

@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Actor from "../../../components/Actor";
-import {
-  getDocumentFromCollection,
-  getDocumentsContainingSlug,
-} from "../../../functions/firebase";
 import { Slider } from "../../../components/Slider";
+import { TEAM } from "../../../data/actors";
+import { PLAYS } from "../../../data/plays";
 
 const photoOptions = {
   size: "20%",
@@ -23,25 +21,17 @@ const actorsOptions = {
 };
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const {
-    name,
-    description,
-    genre,
-    thumbnail,
-    youtubeLink,
-    rating,
-    length,
-    photos,
-  } = await getDocumentFromCollection("plays", params.slug);
+  const play = PLAYS.find((play) => play.slug === params.slug);
 
-  const actors = await getDocumentsContainingSlug(
-    "actors",
-    "playedIn",
-    params.slug,
-    "sortId"
-  );
+  const actors = TEAM.filter((actor) => actor.playedIn.includes(params.slug));
 
-  const photoSlides = photos.map((photo: any) => (
+  if (!play) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const photoSlides = play.photos.map((photo: any) => (
     <div className="w-full aspect-video md:aspect-square relative">
       <Image
         src={photo}
@@ -51,7 +41,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
       />
     </div>
   ));
-  const actorSlides = actors.map((actor) => <Actor actor={actor} />);
+
+  const actorSlides = actors
+    .sort((a, b) => a.sortId - b.sortId)
+    .map((actor) => <Actor actor={actor} />);
 
   return (
     <div className="max-w-4xl lg:mx-auto py-8 lg:py-0 relative overflow-hidden">
@@ -63,19 +56,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
       /> */}
       <header className="flex justify-between items-center">
         <h1 className="text-2xl text-neutral-200 font-bold leading-none lg:text-3xl">
-          {name}
+          {play.name}
         </h1>
         <div className="flex items-center gap-2">
           <span className="text-zinc-400">Рейтинг</span>
           <div className="text-2xl bg-main text-neutral-50 px-4 py-2 rounded-md font-bold leading-tight">
-            {rating}
+            {play.rating}
           </div>
         </div>
       </header>
       <div className="mt-4 w-full aspect-video relative">
         <Image
-          src={thumbnail}
-          alt={name}
+          src={play.thumbnail}
+          alt={play.name}
           priority
           fill
           className="object-cover"
@@ -88,18 +81,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
         <div className="flex flex-col mt-6">
           <span className="text-neutral-400">Продолжительность</span>
-          <p>{length}</p>
+          <p>{play.length}</p>
         </div>
         <div className="flex flex-col mt-6">
           <span className="text-neutral-400">Жанр</span>
-          <p>{genre.toLowerCase()}</p>
+          <p>{play.genre.toLowerCase()}</p>
         </div>
       </div>
       <section className="py-8">
         <h2 className="text-3xl text-neutral-200 font-bold leading-8 mb-8">
           Описание
         </h2>
-        <p>{description}</p>
+        <p>{play.description}</p>
       </section>
       <section className="py-8 relative">
         <h2 className="text-3xl text-neutral-200 font-bold leading-8 mb-8">
@@ -113,7 +106,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </h2>
         <Slider slides={actorSlides} options={actorsOptions} />
       </section>
-      {youtubeLink && (
+      {play.youtubeLink && (
         <section className="py-8">
           <h2 className="text-3xl text-neutral-200 font-bold leading-8 mb-8">
             Видео
@@ -121,9 +114,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <iframe
             width="100%"
             height="auto"
-            src={youtubeLink}
+            src={play.youtubeLink}
             title="YouTube video player"
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             style={{ aspectRatio: "16/9" }}
