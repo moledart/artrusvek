@@ -1,9 +1,9 @@
+import { TPlay } from "../data/plays";
 import Play from "./Play";
-import { PlayType } from "../types/categories";
 import { Slider } from "./Slider";
 
 interface Props {
-  plays: PlayType[];
+  plays: TPlay[];
 }
 
 const options = {

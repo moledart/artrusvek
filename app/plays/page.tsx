@@ -1,6 +1,4 @@
-import { getAllDocumentsFromCollection } from "../../functions/firebase";
 import Play from "../../components/Play";
-import { PlayType } from "../../types/categories";
 import { PLAYS, TPlay } from "../../data/plays";
 
 export default async function Page() {

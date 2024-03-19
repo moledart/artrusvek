@@ -1,9 +1,9 @@
-import { ActorType } from "../types/categories";
-import { Slider } from "./Slider";
+import { TTeamMember } from "../data/actors";
 import Actor from "./Actor";
+import { Slider } from "./Slider";
 
 interface Props {
-  actors: ActorType[];
+  actors: TTeamMember[];
 }
 
 const options = {
