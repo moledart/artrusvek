@@ -15,7 +15,6 @@
     "embla-carousel-react": "^7.1.0",
     "encoding": "^0.1.13",
     "eslint-config-next": "^13.2.4",
-    "firebase": "^9.6.7",
     "next": "^13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -57,6 +56,5 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24",
     "typescript": "^5.4.2"
-  },
-  "packageManager": "yarn@3.5.0"
+  }
 }

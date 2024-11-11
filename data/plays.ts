@@ -3,6 +3,43 @@ export type TPlay = (typeof PLAYS)[number];
 export const PLAYS = [
   {
     actors: [
+      "volkova-ekaterina",
+      "tarhanova-glafira",
+      "stebunov-ivan",
+      "stoyanov-maksim",
+      "shchegolev-maksim",
+      "razbegaev-vyacheslav",
+    ],
+    briefInfo:
+      "Романтическая комедия, полная остроумных диалогов, неожиданных ситуаций и трогательных моментов. ",
+    description:
+      "Главный герой, женатый бизнесмен, тайно встречается со своей возлюбленной в уютном отеле, надеясь сохранить свои похождения в секрете. Однако в один день его тщательно продуманные планы рушатся, когда в отеле оказываются сразу несколько важных для него людей. Начинается череда недоразумений, подмен и забавных интриг, которая ведёт героев к неожиданным открытиям о любви и жизни. Блестящая игра Екатерины Волковой, Глафиры Тархановой, Ивана Стебунова, Максима Стоянова, Максима Щёголева, Вячеслава Разбегаева делает постановку живой и динамичной.",
+    genre: "Романтическая комедия",
+    id: "7f9c2b4d-8e5a-4f3b-9d6c-1a2b3c4d5e6f",
+    igLink: "https://instagram.com/art_rus_vek?r=nametag",
+    length: "2 часа 20 мин",
+    name: "Отель Филадельфия",
+    photos: [
+      "/image/plays/otel-philadelphia/1.webp",
+      "/image/plays/otel-philadelphia/2.webp",
+      "/image/plays/otel-philadelphia/3.webp",
+      "/image/plays/otel-philadelphia/4.webp",
+      "/image/plays/otel-philadelphia/5.webp",
+      "/image/plays/otel-philadelphia/6.webp",
+      "/image/plays/otel-philadelphia/7.webp",
+      "/image/plays/otel-philadelphia/8.webp",
+      "/image/plays/otel-philadelphia/9.webp",
+      "/image/plays/otel-philadelphia/10.webp",
+      "/image/plays/otel-philadelphia/11.webp",
+    ],
+    rating: "10",
+    slug: "otel-philadelphia",
+    sortId: "1",
+    thumbnail: "/image/plays/otel-philadelphia/5.webp",
+    youtubeLink: "",
+  },
+  {
+    actors: [
       "kiril-vytoptov",
       "aleksandr-ratnikov",
       "anastasiya-stezhko",
