@@ -20,7 +20,7 @@ export const PLAYS = [
     length: "2 часа 20 мин",
     name: "Отель Филадельфия",
     photos: [
-      "/image/plays/otel-philadelphia/14.webp",
+      "/image/plays/otel-philadelphia/17.webp",
       "/image/plays/otel-philadelphia/12.webp",
       "/image/plays/otel-philadelphia/13.webp",
       "/image/plays/otel-philadelphia/15.webp",
@@ -38,7 +38,7 @@ export const PLAYS = [
     rating: "10",
     slug: "otel-philadelphia",
     sortId: "1",
-    thumbnail: "/image/plays/otel-philadelphia/14.webp",
+    thumbnail: "/image/plays/otel-philadelphia/17.webp",
     youtubeLink: "",
   },
   {
